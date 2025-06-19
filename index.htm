@@ -1,1 +1,1380 @@
+ <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, 
+    initial-scale=1.0">
+        <title>Causal Language in Philosophy Survey</title>
+        <style>
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana,
+    sans-serif;
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 20px;
+                line-height: 1.6;
+                background-color: #f5f5f5;
+            }
+            .survey-container {
+                background-color: white;
+                padding: 30px;
+                border-radius: 10px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+            .question-block {
+                margin-bottom: 25px;
+                padding: 20px;
+                border-left: 4px solid #007bff;
+                background-color: #f8f9fa;
+            }
+            .abstract-display {
+                display: flex;
+                gap: 20px;
+                margin: 20px 0;
+            }
+            .abstract-box {
+                flex: 1;
+                padding: 15px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                background-color: white;
+            }
+            .abstract-title {
+                font-weight: bold;
+                margin-bottom: 10px;
+                color: #007bff;
+            }
+            .likert-scale {
+                display: flex;
+                justify-content: space-between;
+                margin: 10px 0;
+            }
+            .likert-option {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                flex: 1;
+                margin: 0 5px;
+            }
+            .likert-option input[type="radio"] {
+                margin-bottom: 5px;
+            }
+            .likert-option label {
+                font-size: 0.9em;
+                text-align: center;
+            }
+            .question-title {
+                font-weight: bold;
+                margin-bottom: 10px;
+                color: #333;
+            }
+            .submit-btn {
+                background-color: #007bff;
+                color: white;
+                padding: 12px 30px;
+                border: none;
+                border-radius: 5px;
+                font-size: 16px;
+                cursor: pointer;
+                margin-top: 20px;
+            }
+            .submit-btn:hover {
+                background-color: #0056b3;
+            }
+            .progress-bar {
+                width: 100%;
+                height: 10px;
+                background-color: #e0e0e0;
+                border-radius: 5px;
+                margin-bottom: 20px;
+            }
+            .progress-fill {
+                height: 100%;
+                background-color: #007bff;
+                border-radius: 5px;
+                transition: width 0.3s ease;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="survey-container">
+            <h1>Causal Language in Philosophical Writing Survey</h1>
+            <p>This survey examines how causal language affects the clarity
+     and comprehension of philosophical abstracts.
+            Your participation will contribute to research on improving
+    academic communication in philosophy.</p>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 
+    0%"></div>
+            </div>
+
+            <form id="surveyForm">
+
+            <div class="question-block" data-question="0">
+                <div class="question-title">What is your age?</div>
+                <input type="number" name="demo_age" 
+                       min="18" 
+                       max="100"
+                       required>
+            </div>
+
+
+            <div class="question-block" data-question="1">
+                <div class="question-title">What is your highest level of
+    education?</div>
+                <select name="demo_education" required>
+                    <option value="">Please select...</option>
+                    <option value="High school or equivalent">High school
+    or equivalent</option><option value="Some college">Some
+    college</option><option value="Bachelor's degree">Bachelor's
+    degree</option><option value="Master's degree">Master's
+    degree</option><option value="Doctoral degree">Doctoral
+    degree</option><option value="Other">Other</option>
+                </select>
+            </div>
+
+
+            <div class="question-block" data-question="2">
+                <div class="question-title">How familiar are you with
+    philosophical academic writing?</div>
+                <div class="likert-scale">
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="demo_philosophy_familiarity_1" name="demo_philosophy_familiarity" 
+    value="1" required>
+                        <label for="demo_philosophy_familiarity_1">Not at
+    all familiar</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="demo_philosophy_familiarity_2" name="demo_philosophy_familiarity" 
+    value="2" required>
+                        <label for="demo_philosophy_familiarity_2">Slightly
+     familiar</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="demo_philosophy_familiarity_3" name="demo_philosophy_familiarity" 
+    value="3" required>
+                        <label 
+    for="demo_philosophy_familiarity_3">Moderately familiar</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="demo_philosophy_familiarity_4" name="demo_philosophy_familiarity" 
+    value="4" required>
+                        <label for="demo_philosophy_familiarity_4">Very
+    familiar</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="demo_philosophy_familiarity_5" name="demo_philosophy_familiarity" 
+    value="5" required>
+                        <label 
+    for="demo_philosophy_familiarity_5">Extremely familiar</label>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="question-block" data-question="3">
+                <div class="abstract-display">
+                    <div class="abstract-box">
+                        <div class="abstract-title">Abstract A</div>
+                        <div>The research demonstrates that social
+    isolation inhibits psychological well-being while
+                    simultaneously facilitating maladaptive coping
+    strategies. These reciprocal processes
+                    sustain a dialectical relationship where loneliness
+    serves as both predictor and outcome.
+                    The cornerstone of this framework lies in understanding
+     how environmental factors
+                    moderate the indirect effects of social connectedness
+    on mental health outcomes.</div>
+                    </div>
+                    <div class="abstract-box">
+                        <div class="abstract-title">Abstract B</div>
+                        <div>The research explores how social isolation
+    affects psychological well-being and coping
+                    strategies. These processes show connections where
+    loneliness appears as both a factor
+                    and result. The study focuses on understanding how
+    environmental conditions influence
+                    the relationship between social connection and mental
+    health.</div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="question-block" data-question="4">
+                <div class="question-title">Which abstract is clearer and
+    easier to understand?</div>
+                <select name="abstract_pair_1_clarity" required>
+                    <option value="">Please select...</option>
+                    <option value="Abstract A">Abstract A</option><option 
+    value="Abstract B">Abstract B</option><option value="Both are equally 
+    clear">Both are equally clear</option><option value="Neither is 
+    clear">Neither is clear</option>
+                </select>
+            </div>
+
+
+            <div class="question-block" data-question="5">
+                <div class="question-title">Rate the clarity of Abstract
+    A:</div>
+                <div class="likert-scale">
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_1_clarity_rating_a_1" 
+    name="abstract_pair_1_clarity_rating_a" value="1" required>
+                        <label 
+    for="abstract_pair_1_clarity_rating_a_1">Very unclear</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_1_clarity_rating_a_2" 
+    name="abstract_pair_1_clarity_rating_a" value="2" required>
+                        <label 
+    for="abstract_pair_1_clarity_rating_a_2">Unclear</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_1_clarity_rating_a_3" 
+    name="abstract_pair_1_clarity_rating_a" value="3" required>
+                        <label 
+    for="abstract_pair_1_clarity_rating_a_3">Neutral</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_1_clarity_rating_a_4" 
+    name="abstract_pair_1_clarity_rating_a" value="4" required>
+                        <label 
+    for="abstract_pair_1_clarity_rating_a_4">Clear</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_1_clarity_rating_a_5" 
+    name="abstract_pair_1_clarity_rating_a" value="5" required>
+                        <label 
+    for="abstract_pair_1_clarity_rating_a_5">Very clear</label>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="question-block" data-question="6">
+                <div class="question-title">Rate the clarity of Abstract
+    B:</div>
+                <div class="likert-scale">
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_1_clarity_rating_b_1" 
+    name="abstract_pair_1_clarity_rating_b" value="1" required>
+                        <label 
+    for="abstract_pair_1_clarity_rating_b_1">Very unclear</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_1_clarity_rating_b_2" 
+    name="abstract_pair_1_clarity_rating_b" value="2" required>
+                        <label 
+    for="abstract_pair_1_clarity_rating_b_2">Unclear</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_1_clarity_rating_b_3" 
+    name="abstract_pair_1_clarity_rating_b" value="3" required>
+                        <label 
+    for="abstract_pair_1_clarity_rating_b_3">Neutral</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_1_clarity_rating_b_4" 
+    name="abstract_pair_1_clarity_rating_b" value="4" required>
+                        <label 
+    for="abstract_pair_1_clarity_rating_b_4">Clear</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_1_clarity_rating_b_5" 
+    name="abstract_pair_1_clarity_rating_b" value="5" required>
+                        <label 
+    for="abstract_pair_1_clarity_rating_b_5">Very clear</label>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="question-block" data-question="7">
+                <div class="question-title">How much mental effort did
+    Abstract A require to understand?</div>
+                <div class="likert-scale">
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_1_cognitive_load_a_1" 
+    name="abstract_pair_1_cognitive_load_a" value="1" required>
+                        <label 
+    for="abstract_pair_1_cognitive_load_a_1">Very little effort</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_1_cognitive_load_a_2" 
+    name="abstract_pair_1_cognitive_load_a" value="2" required>
+                        <label 
+    for="abstract_pair_1_cognitive_load_a_2">Little effort</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_1_cognitive_load_a_3" 
+    name="abstract_pair_1_cognitive_load_a" value="3" required>
+                        <label 
+    for="abstract_pair_1_cognitive_load_a_3">Moderate effort</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_1_cognitive_load_a_4" 
+    name="abstract_pair_1_cognitive_load_a" value="4" required>
+                        <label 
+    for="abstract_pair_1_cognitive_load_a_4">Much effort</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_1_cognitive_load_a_5" 
+    name="abstract_pair_1_cognitive_load_a" value="5" required>
+                        <label 
+    for="abstract_pair_1_cognitive_load_a_5">Very much effort</label>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="question-block" data-question="8">
+                <div class="question-title">How much mental effort did
+    Abstract B require to understand?</div>
+                <div class="likert-scale">
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_1_cognitive_load_b_1" 
+    name="abstract_pair_1_cognitive_load_b" value="1" required>
+                        <label 
+    for="abstract_pair_1_cognitive_load_b_1">Very little effort</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_1_cognitive_load_b_2" 
+    name="abstract_pair_1_cognitive_load_b" value="2" required>
+                        <label 
+    for="abstract_pair_1_cognitive_load_b_2">Little effort</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_1_cognitive_load_b_3" 
+    name="abstract_pair_1_cognitive_load_b" value="3" required>
+                        <label 
+    for="abstract_pair_1_cognitive_load_b_3">Moderate effort</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_1_cognitive_load_b_4" 
+    name="abstract_pair_1_cognitive_load_b" value="4" required>
+                        <label 
+    for="abstract_pair_1_cognitive_load_b_4">Much effort</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_1_cognitive_load_b_5" 
+    name="abstract_pair_1_cognitive_load_b" value="5" required>
+                        <label 
+    for="abstract_pair_1_cognitive_load_b_5">Very much effort</label>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="question-block" data-question="9">
+                <div class="question-title">Rate the use of causal language
+     (words indicating cause-effect relationships) in Abstract A:</div>
+                <div class="likert-scale">
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_1_causal_language_a_1" 
+    name="abstract_pair_1_causal_language_a" value="1" required>
+                        <label 
+    for="abstract_pair_1_causal_language_a_1">Too little</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_1_causal_language_a_2" 
+    name="abstract_pair_1_causal_language_a" value="2" required>
+                        <label 
+    for="abstract_pair_1_causal_language_a_2">Too few</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_1_causal_language_a_3" 
+    name="abstract_pair_1_causal_language_a" value="3" required>
+                        <label 
+    for="abstract_pair_1_causal_language_a_3">Just right</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_1_causal_language_a_4" 
+    name="abstract_pair_1_causal_language_a" value="4" required>
+                        <label 
+    for="abstract_pair_1_causal_language_a_4">Too many</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_1_causal_language_a_5" 
+    name="abstract_pair_1_causal_language_a" value="5" required>
+                        <label 
+    for="abstract_pair_1_causal_language_a_5">Far too many</label>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="question-block" data-question="10">
+                <div class="question-title">Rate the use of causal language
+     (words indicating cause-effect relationships) in Abstract B:</div>
+                <div class="likert-scale">
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_1_causal_language_b_1" 
+    name="abstract_pair_1_causal_language_b" value="1" required>
+                        <label 
+    for="abstract_pair_1_causal_language_b_1">Too little</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_1_causal_language_b_2" 
+    name="abstract_pair_1_causal_language_b" value="2" required>
+                        <label 
+    for="abstract_pair_1_causal_language_b_2">Too few</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_1_causal_language_b_3" 
+    name="abstract_pair_1_causal_language_b" value="3" required>
+                        <label 
+    for="abstract_pair_1_causal_language_b_3">Just right</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_1_causal_language_b_4" 
+    name="abstract_pair_1_causal_language_b" value="4" required>
+                        <label 
+    for="abstract_pair_1_causal_language_b_4">Too many</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_1_causal_language_b_5" 
+    name="abstract_pair_1_causal_language_b" value="5" required>
+                        <label 
+    for="abstract_pair_1_causal_language_b_5">Far too many</label>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="question-block" data-question="11">
+                <div class="abstract-display">
+                    <div class="abstract-box">
+                        <div class="abstract-title">Abstract A</div>
+                        <div>This article sustains that neural plasticity
+    subyace higher cognitive processes,
+                    enabling complex interactions that play a crucial role
+    in memory formation. The underlying
+                    mechanisms presuppose bidirectional feedback loops that
+     translate into observable behavioral
+                    outcomes. Statistical analysis reveals significant
+    predictors and explains variance through
+                    mediating variables that function as catalysts in the
+    cognitive framework.</div>
+                    </div>
+                    <div class="abstract-box">
+                        <div class="abstract-title">Abstract B</div>
+                        <div>This article examines the relationship between
+     neural plasticity and higher cognitive
+                    processes in memory formation. The study investigates
+    how different mechanisms contribute
+                    to behavioral outcomes. Statistical analysis shows
+    important factors and describes
+                    patterns in the cognitive framework through various
+    measured variables.</div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="question-block" data-question="12">
+                <div class="question-title">Which abstract is clearer and
+    easier to understand?</div>
+                <select name="abstract_pair_2_clarity" required>
+                    <option value="">Please select...</option>
+                    <option value="Abstract A">Abstract A</option><option 
+    value="Abstract B">Abstract B</option><option value="Both are equally 
+    clear">Both are equally clear</option><option value="Neither is 
+    clear">Neither is clear</option>
+                </select>
+            </div>
+
+
+            <div class="question-block" data-question="13">
+                <div class="question-title">Rate the clarity of Abstract
+    A:</div>
+                <div class="likert-scale">
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_2_clarity_rating_a_1" 
+    name="abstract_pair_2_clarity_rating_a" value="1" required>
+                        <label 
+    for="abstract_pair_2_clarity_rating_a_1">Very unclear</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_2_clarity_rating_a_2" 
+    name="abstract_pair_2_clarity_rating_a" value="2" required>
+                        <label 
+    for="abstract_pair_2_clarity_rating_a_2">Unclear</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_2_clarity_rating_a_3" 
+    name="abstract_pair_2_clarity_rating_a" value="3" required>
+                        <label 
+    for="abstract_pair_2_clarity_rating_a_3">Neutral</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_2_clarity_rating_a_4" 
+    name="abstract_pair_2_clarity_rating_a" value="4" required>
+                        <label 
+    for="abstract_pair_2_clarity_rating_a_4">Clear</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_2_clarity_rating_a_5" 
+    name="abstract_pair_2_clarity_rating_a" value="5" required>
+                        <label 
+    for="abstract_pair_2_clarity_rating_a_5">Very clear</label>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="question-block" data-question="14">
+                <div class="question-title">Rate the clarity of Abstract
+    B:</div>
+                <div class="likert-scale">
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_2_clarity_rating_b_1" 
+    name="abstract_pair_2_clarity_rating_b" value="1" required>
+                        <label 
+    for="abstract_pair_2_clarity_rating_b_1">Very unclear</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_2_clarity_rating_b_2" 
+    name="abstract_pair_2_clarity_rating_b" value="2" required>
+                        <label 
+    for="abstract_pair_2_clarity_rating_b_2">Unclear</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_2_clarity_rating_b_3" 
+    name="abstract_pair_2_clarity_rating_b" value="3" required>
+                        <label 
+    for="abstract_pair_2_clarity_rating_b_3">Neutral</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_2_clarity_rating_b_4" 
+    name="abstract_pair_2_clarity_rating_b" value="4" required>
+                        <label 
+    for="abstract_pair_2_clarity_rating_b_4">Clear</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_2_clarity_rating_b_5" 
+    name="abstract_pair_2_clarity_rating_b" value="5" required>
+                        <label 
+    for="abstract_pair_2_clarity_rating_b_5">Very clear</label>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="question-block" data-question="15">
+                <div class="question-title">How much mental effort did
+    Abstract A require to understand?</div>
+                <div class="likert-scale">
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_2_cognitive_load_a_1" 
+    name="abstract_pair_2_cognitive_load_a" value="1" required>
+                        <label 
+    for="abstract_pair_2_cognitive_load_a_1">Very little effort</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_2_cognitive_load_a_2" 
+    name="abstract_pair_2_cognitive_load_a" value="2" required>
+                        <label 
+    for="abstract_pair_2_cognitive_load_a_2">Little effort</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_2_cognitive_load_a_3" 
+    name="abstract_pair_2_cognitive_load_a" value="3" required>
+                        <label 
+    for="abstract_pair_2_cognitive_load_a_3">Moderate effort</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_2_cognitive_load_a_4" 
+    name="abstract_pair_2_cognitive_load_a" value="4" required>
+                        <label 
+    for="abstract_pair_2_cognitive_load_a_4">Much effort</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_2_cognitive_load_a_5" 
+    name="abstract_pair_2_cognitive_load_a" value="5" required>
+                        <label 
+    for="abstract_pair_2_cognitive_load_a_5">Very much effort</label>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="question-block" data-question="16">
+                <div class="question-title">How much mental effort did
+    Abstract B require to understand?</div>
+                <div class="likert-scale">
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_2_cognitive_load_b_1" 
+    name="abstract_pair_2_cognitive_load_b" value="1" required>
+                        <label 
+    for="abstract_pair_2_cognitive_load_b_1">Very little effort</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_2_cognitive_load_b_2" 
+    name="abstract_pair_2_cognitive_load_b" value="2" required>
+                        <label 
+    for="abstract_pair_2_cognitive_load_b_2">Little effort</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_2_cognitive_load_b_3" 
+    name="abstract_pair_2_cognitive_load_b" value="3" required>
+                        <label 
+    for="abstract_pair_2_cognitive_load_b_3">Moderate effort</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_2_cognitive_load_b_4" 
+    name="abstract_pair_2_cognitive_load_b" value="4" required>
+                        <label 
+    for="abstract_pair_2_cognitive_load_b_4">Much effort</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_2_cognitive_load_b_5" 
+    name="abstract_pair_2_cognitive_load_b" value="5" required>
+                        <label 
+    for="abstract_pair_2_cognitive_load_b_5">Very much effort</label>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="question-block" data-question="17">
+                <div class="question-title">Rate the use of causal language
+     (words indicating cause-effect relationships) in Abstract A:</div>
+                <div class="likert-scale">
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_2_causal_language_a_1" 
+    name="abstract_pair_2_causal_language_a" value="1" required>
+                        <label 
+    for="abstract_pair_2_causal_language_a_1">Too little</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_2_causal_language_a_2" 
+    name="abstract_pair_2_causal_language_a" value="2" required>
+                        <label 
+    for="abstract_pair_2_causal_language_a_2">Too few</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_2_causal_language_a_3" 
+    name="abstract_pair_2_causal_language_a" value="3" required>
+                        <label 
+    for="abstract_pair_2_causal_language_a_3">Just right</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_2_causal_language_a_4" 
+    name="abstract_pair_2_causal_language_a" value="4" required>
+                        <label 
+    for="abstract_pair_2_causal_language_a_4">Too many</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_2_causal_language_a_5" 
+    name="abstract_pair_2_causal_language_a" value="5" required>
+                        <label 
+    for="abstract_pair_2_causal_language_a_5">Far too many</label>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="question-block" data-question="18">
+                <div class="question-title">Rate the use of causal language
+     (words indicating cause-effect relationships) in Abstract B:</div>
+                <div class="likert-scale">
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_2_causal_language_b_1" 
+    name="abstract_pair_2_causal_language_b" value="1" required>
+                        <label 
+    for="abstract_pair_2_causal_language_b_1">Too little</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_2_causal_language_b_2" 
+    name="abstract_pair_2_causal_language_b" value="2" required>
+                        <label 
+    for="abstract_pair_2_causal_language_b_2">Too few</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_2_causal_language_b_3" 
+    name="abstract_pair_2_causal_language_b" value="3" required>
+                        <label 
+    for="abstract_pair_2_causal_language_b_3">Just right</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_2_causal_language_b_4" 
+    name="abstract_pair_2_causal_language_b" value="4" required>
+                        <label 
+    for="abstract_pair_2_causal_language_b_4">Too many</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_2_causal_language_b_5" 
+    name="abstract_pair_2_causal_language_b" value="5" required>
+                        <label 
+    for="abstract_pair_2_causal_language_b_5">Far too many</label>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="question-block" data-question="19">
+                <div class="abstract-display">
+                    <div class="abstract-box">
+                        <div class="abstract-title">Abstract A</div>
+                        <div>This investigation reveals how technological
+    determinism underlies contemporary ethical
+                    debates, functioning as the foundation for moral
+    reasoning in digital contexts. The
+                    analysis sustains that algorithmic bias translates into
+     systemic discrimination through
+                    mediating pathways that inhibit equitable outcomes.
+    These mechanisms presuppose
+                    reciprocal interactions between human agency and
+    machine learning processes.</div>
+                    </div>
+                    <div class="abstract-box">
+                        <div class="abstract-title">Abstract B</div>
+                        <div>This investigation examines technological
+    determinism in contemporary ethical debates,
+                    as a basis for moral reasoning in digital contexts. The
+     analysis shows that algorithmic
+                    bias creates systemic discrimination through pathways
+    that affect equitable outcomes.
+                    These processes involve interactions between human
+    agency and machine learning.</div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="question-block" data-question="20">
+                <div class="question-title">Which abstract is clearer and
+    easier to understand?</div>
+                <select name="abstract_pair_3_clarity" required>
+                    <option value="">Please select...</option>
+                    <option value="Abstract A">Abstract A</option><option 
+    value="Abstract B">Abstract B</option><option value="Both are equally 
+    clear">Both are equally clear</option><option value="Neither is 
+    clear">Neither is clear</option>
+                </select>
+            </div>
+
+
+            <div class="question-block" data-question="21">
+                <div class="question-title">Rate the clarity of Abstract
+    A:</div>
+                <div class="likert-scale">
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_3_clarity_rating_a_1" 
+    name="abstract_pair_3_clarity_rating_a" value="1" required>
+                        <label 
+    for="abstract_pair_3_clarity_rating_a_1">Very unclear</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_3_clarity_rating_a_2" 
+    name="abstract_pair_3_clarity_rating_a" value="2" required>
+                        <label 
+    for="abstract_pair_3_clarity_rating_a_2">Unclear</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_3_clarity_rating_a_3" 
+    name="abstract_pair_3_clarity_rating_a" value="3" required>
+                        <label 
+    for="abstract_pair_3_clarity_rating_a_3">Neutral</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_3_clarity_rating_a_4" 
+    name="abstract_pair_3_clarity_rating_a" value="4" required>
+                        <label 
+    for="abstract_pair_3_clarity_rating_a_4">Clear</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_3_clarity_rating_a_5" 
+    name="abstract_pair_3_clarity_rating_a" value="5" required>
+                        <label 
+    for="abstract_pair_3_clarity_rating_a_5">Very clear</label>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="question-block" data-question="22">
+                <div class="question-title">Rate the clarity of Abstract
+    B:</div>
+                <div class="likert-scale">
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_3_clarity_rating_b_1" 
+    name="abstract_pair_3_clarity_rating_b" value="1" required>
+                        <label 
+    for="abstract_pair_3_clarity_rating_b_1">Very unclear</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_3_clarity_rating_b_2" 
+    name="abstract_pair_3_clarity_rating_b" value="2" required>
+                        <label 
+    for="abstract_pair_3_clarity_rating_b_2">Unclear</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_3_clarity_rating_b_3" 
+    name="abstract_pair_3_clarity_rating_b" value="3" required>
+                        <label 
+    for="abstract_pair_3_clarity_rating_b_3">Neutral</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_3_clarity_rating_b_4" 
+    name="abstract_pair_3_clarity_rating_b" value="4" required>
+                        <label 
+    for="abstract_pair_3_clarity_rating_b_4">Clear</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_3_clarity_rating_b_5" 
+    name="abstract_pair_3_clarity_rating_b" value="5" required>
+                        <label 
+    for="abstract_pair_3_clarity_rating_b_5">Very clear</label>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="question-block" data-question="23">
+                <div class="question-title">How much mental effort did
+    Abstract A require to understand?</div>
+                <div class="likert-scale">
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_3_cognitive_load_a_1" 
+    name="abstract_pair_3_cognitive_load_a" value="1" required>
+                        <label 
+    for="abstract_pair_3_cognitive_load_a_1">Very little effort</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_3_cognitive_load_a_2" 
+    name="abstract_pair_3_cognitive_load_a" value="2" required>
+                        <label 
+    for="abstract_pair_3_cognitive_load_a_2">Little effort</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_3_cognitive_load_a_3" 
+    name="abstract_pair_3_cognitive_load_a" value="3" required>
+                        <label 
+    for="abstract_pair_3_cognitive_load_a_3">Moderate effort</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_3_cognitive_load_a_4" 
+    name="abstract_pair_3_cognitive_load_a" value="4" required>
+                        <label 
+    for="abstract_pair_3_cognitive_load_a_4">Much effort</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_3_cognitive_load_a_5" 
+    name="abstract_pair_3_cognitive_load_a" value="5" required>
+                        <label 
+    for="abstract_pair_3_cognitive_load_a_5">Very much effort</label>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="question-block" data-question="24">
+                <div class="question-title">How much mental effort did
+    Abstract B require to understand?</div>
+                <div class="likert-scale">
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_3_cognitive_load_b_1" 
+    name="abstract_pair_3_cognitive_load_b" value="1" required>
+                        <label 
+    for="abstract_pair_3_cognitive_load_b_1">Very little effort</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_3_cognitive_load_b_2" 
+    name="abstract_pair_3_cognitive_load_b" value="2" required>
+                        <label 
+    for="abstract_pair_3_cognitive_load_b_2">Little effort</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_3_cognitive_load_b_3" 
+    name="abstract_pair_3_cognitive_load_b" value="3" required>
+                        <label 
+    for="abstract_pair_3_cognitive_load_b_3">Moderate effort</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_3_cognitive_load_b_4" 
+    name="abstract_pair_3_cognitive_load_b" value="4" required>
+                        <label 
+    for="abstract_pair_3_cognitive_load_b_4">Much effort</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_3_cognitive_load_b_5" 
+    name="abstract_pair_3_cognitive_load_b" value="5" required>
+                        <label 
+    for="abstract_pair_3_cognitive_load_b_5">Very much effort</label>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="question-block" data-question="25">
+                <div class="question-title">Rate the use of causal language
+     (words indicating cause-effect relationships) in Abstract A:</div>
+                <div class="likert-scale">
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_3_causal_language_a_1" 
+    name="abstract_pair_3_causal_language_a" value="1" required>
+                        <label 
+    for="abstract_pair_3_causal_language_a_1">Too little</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_3_causal_language_a_2" 
+    name="abstract_pair_3_causal_language_a" value="2" required>
+                        <label 
+    for="abstract_pair_3_causal_language_a_2">Too few</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_3_causal_language_a_3" 
+    name="abstract_pair_3_causal_language_a" value="3" required>
+                        <label 
+    for="abstract_pair_3_causal_language_a_3">Just right</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_3_causal_language_a_4" 
+    name="abstract_pair_3_causal_language_a" value="4" required>
+                        <label 
+    for="abstract_pair_3_causal_language_a_4">Too many</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_3_causal_language_a_5" 
+    name="abstract_pair_3_causal_language_a" value="5" required>
+                        <label 
+    for="abstract_pair_3_causal_language_a_5">Far too many</label>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="question-block" data-question="26">
+                <div class="question-title">Rate the use of causal language
+     (words indicating cause-effect relationships) in Abstract B:</div>
+                <div class="likert-scale">
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_3_causal_language_b_1" 
+    name="abstract_pair_3_causal_language_b" value="1" required>
+                        <label 
+    for="abstract_pair_3_causal_language_b_1">Too little</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_3_causal_language_b_2" 
+    name="abstract_pair_3_causal_language_b" value="2" required>
+                        <label 
+    for="abstract_pair_3_causal_language_b_2">Too few</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_3_causal_language_b_3" 
+    name="abstract_pair_3_causal_language_b" value="3" required>
+                        <label 
+    for="abstract_pair_3_causal_language_b_3">Just right</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_3_causal_language_b_4" 
+    name="abstract_pair_3_causal_language_b" value="4" required>
+                        <label 
+    for="abstract_pair_3_causal_language_b_4">Too many</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="abstract_pair_3_causal_language_b_5" 
+    name="abstract_pair_3_causal_language_b" value="5" required>
+                        <label 
+    for="abstract_pair_3_causal_language_b_5">Far too many</label>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="question-block" data-question="27">
+                <div class="question-title">In general, do you prefer
+    academic abstracts that use more explicit causal language?</div>
+                <div class="likert-scale">
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="general_causal_preference_1" name="general_causal_preference" 
+    value="1" required>
+                        <label for="general_causal_preference_1">Strongly
+    disagree</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="general_causal_preference_2" name="general_causal_preference" 
+    value="2" required>
+                        <label 
+    for="general_causal_preference_2">Disagree</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="general_causal_preference_3" name="general_causal_preference" 
+    value="3" required>
+                        <label 
+    for="general_causal_preference_3">Neutral</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="general_causal_preference_4" name="general_causal_preference" 
+    value="4" required>
+                        <label 
+    for="general_causal_preference_4">Agree</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="general_causal_preference_5" name="general_causal_preference" 
+    value="5" required>
+                        <label for="general_causal_preference_5">Strongly
+    agree</label>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="question-block" data-question="28">
+                <div class="question-title">Do you think explicit causal
+    language improves comprehension of philosophical texts?</div>
+                <div class="likert-scale">
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="general_comprehension_impact_1" name="general_comprehension_impact"
+     value="1" required>
+                        <label 
+    for="general_comprehension_impact_1">Strongly disagree</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="general_comprehension_impact_2" name="general_comprehension_impact"
+     value="2" required>
+                        <label 
+    for="general_comprehension_impact_2">Disagree</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="general_comprehension_impact_3" name="general_comprehension_impact"
+     value="3" required>
+                        <label 
+    for="general_comprehension_impact_3">Neutral</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="general_comprehension_impact_4" name="general_comprehension_impact"
+     value="4" required>
+                        <label 
+    for="general_comprehension_impact_4">Agree</label>
+                    </div>
+
+                    <div class="likert-option">
+                        <input type="radio" 
+    id="general_comprehension_impact_5" name="general_comprehension_impact"
+     value="5" required>
+                        <label 
+    for="general_comprehension_impact_5">Strongly agree</label>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="question-block" data-question="29">
+                <div class="question-title">Please provide any additional
+    comments about causal language in philosophical writing:</div>
+                <textarea name="open_feedback" rows="4" cols="50" 
+                          placeholder="Your thoughts on the use of causal 
+    language in academic philosophy..."
+                          ></textarea>
+            </div>
+
+
+                <button type="submit" class="submit-btn">Submit
+    Survey</button>
+            </form>
+        </div>
+
+        <script>
+
+            document.addEventListener('DOMContentLoaded', function() {
+                const form = document.getElementById('surveyForm');
+                const progressFill =
+    document.getElementById('progressFill');
+                const questionBlocks =
+    document.querySelectorAll('.question-block');
+
+                // Update progress bar
+                function updateProgress() {
+                    const inputs = form.querySelectorAll('input, select, 
+    textarea');
+                    const filled = Array.from(inputs).filter(input => {
+                        if (input.type === 'radio') {
+                            return
+    form.querySelector(`input[name="${input.name}"]:checked`);
+                        }
+                        return input.value.trim() !== '';
+                    });
+
+                    const progress = (filled.length / inputs.length) * 100;
+                    progressFill.style.width = progress + '%';
+                }
+
+                // Add event listeners
+                form.addEventListener('change', updateProgress);
+                form.addEventListener('input', updateProgress);
+
+                // Form submission
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    const formData = new FormData(form);
+                    const data = {};
+
+                    for (let [key, value] of formData.entries()) {
+                        data[key] = value;
+                    }
+
+                    // Add timestamp and session info
+                    data.timestamp = new Date().toISOString();
+                    data.session_id = 'session_' +
+    Math.random().toString(36).substr(2, 9);
+
+                    // In a real deployment, this would send to your data 
+    collection endpoint
+                    console.log('Survey Data:', data);
+                    alert('Survey completed! Thank you for your 
+    participation.');
+
+                    // For Prolific integration, you would redirect to 
+    completion URL here
+                    // window.location.href = 
+    'https://app.prolific.co/submissions/complete?cc=COMPLETION_CODE';
+                });
+
+                // Initialize progress
+                updateProgress();
+            });
+
+        </script>
+    </body>
+    </html>
+
+
+
+
+
 
