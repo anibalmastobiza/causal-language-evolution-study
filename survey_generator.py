@@ -1,4 +1,4 @@
- import json
+import json
   import random
   from typing import Dict, List, Tuple
   from pathlib import Path
@@ -57,10 +57,9 @@
               "required": True
           })
 
-          # Abstract comparison questions
-          abstract_pairs = self._create_abstract_pairs()
-
-          for i, (high_density, low_density) in enumerate(abstract_pairs):
+          # Abstract comparison questions - usando abstracts placeholder 
+  que serán reemplazados por JavaScript
+          for i in range(3):  # 3 pairs of abstracts
               questions.extend([
                   {
                       "id": f"abstract_pair_{i+1}_presentation",
@@ -68,11 +67,13 @@
                       "content": {
                           "abstract_a": {
                               "title": f"Abstract A",
-                              "text": high_density["text"]
+                              "text": "Loading abstract..."  # Será 
+  reemplazado por JavaScript
                           },
                           "abstract_b": {
                               "title": f"Abstract B",
-                              "text": low_density["text"]
+                              "text": "Loading abstract..."  # Será 
+  reemplazado por JavaScript
                           }
                       }
                   },
@@ -240,6 +241,10 @@
               margin-bottom: 10px;
               color: #007bff;
           }
+          .abstract-text {
+              line-height: 1.5;
+              font-size: 14px;
+          }
           .likert-scale {
               display: flex;
               justify-content: space-between;
@@ -289,6 +294,10 @@
               background-color: #007bff;
               border-radius: 5px;
               transition: width 0.3s ease;
+          }
+          .loading {
+              font-style: italic;
+              color: #666;
           }
       </style>
   </head>
@@ -352,16 +361,18 @@
           content = question["content"]
           return f"""
           <div class="question-block" data-question="{index}">
-              <div class="abstract-display">
+              <div class="abstract-display" data-pair-index="{index}">
                   <div class="abstract-box">
                       <div 
   class="abstract-title">{content['abstract_a']['title']}</div>
-                      <div>{content['abstract_a']['text']}</div>
+                      <div class="abstract-text 
+  abstract-a-text">{content['abstract_a']['text']}</div>
                   </div>
                   <div class="abstract-box">
                       <div 
   class="abstract-title">{content['abstract_b']['title']}</div>
-                      <div>{content['abstract_b']['text']}</div>
+                      <div class="abstract-text 
+  abstract-b-text">{content['abstract_b']['text']}</div>
                   </div>
               </div>
           </div>
@@ -448,7 +459,7 @@
               const questionBlocks = 
   document.querySelectorAll('.question-block');
               
-              // Generate and display random abstracts
+              // Generate and display random abstracts immediately
               generateRandomAbstracts();
               
               // Update progress bar
@@ -515,10 +526,14 @@
 
           js_templates = []
           for template in templates:
+              # Clean base text to ensure no Spanish words
+              clean_base_text = template.base_text.replace('subyace',
+  'underlie')
+
               js_template = f"""
               {{
                   topic: "{template.topic}",
-                  baseText: `{template.base_text}`,
+                  baseText: `{clean_base_text}`,
                   highDensityTerms: 
   {json.dumps(template.high_density_terms)},
                   lowDensityAlternatives: 
@@ -604,6 +619,9 @@
   document.querySelectorAll('.abstract-display');
               currentAbstracts = [];
               
+              console.log('Generating random abstracts for', 
+  abstractDisplays.length, 'displays');
+              
               abstractDisplays.forEach((display, index) => {{
                   const [highDensity, lowDensity] = generateAbstractPair();
                   currentAbstracts.push({{high: highDensity, low: 
@@ -616,14 +634,23 @@
                   const abstractB = isHighDensityA ? lowDensity : 
   highDensity;
                   
-                  const boxA = 
-  display.querySelector('.abstract-box:first-child div:last-child');
-                  const boxB = 
-  display.querySelector('.abstract-box:last-child div:last-child');
+                  // Find the text elements more specifically
+                  const boxAText = 
+  display.querySelector('.abstract-a-text');
+                  const boxBText = 
+  display.querySelector('.abstract-b-text');
                   
-                  if (boxA && boxB) {{
-                      boxA.textContent = abstractA.text;
-                      boxB.textContent = abstractB.text;
+                  if (boxAText && boxBText) {{
+                      boxAText.textContent = abstractA.text;
+                      boxBText.textContent = abstractB.text;
+                      boxAText.classList.remove('loading');
+                      boxBText.classList.remove('loading');
+                      
+                      console.log('Updated pair', index + 1, '- Topic:', 
+  abstractA.topic);
+                  }} else {{
+                      console.error('Could not find text elements for 
+  pair', index + 1);
                   }}
               }});
           }}
@@ -631,6 +658,11 @@
           function getDisplayedAbstracts() {{
               return currentAbstracts;
           }}
+          
+          // Add refresh button for testing
+          window.refreshAbstracts = function() {{
+              generateRandomAbstracts();
+          }};
           """
 
       def save_survey_files(self, output_dir: str = '../survey/'):
@@ -678,6 +710,11 @@
   - Target n > 300 participants as specified
   - Power analysis for medium effect size (d = 0.5)
   - Alpha = 0.05, Power = 0.80
+
+  ## Testing Randomization
+  - Open browser console (F12)
+  - Run: refreshAbstracts() to test randomization
+  - Each page refresh should show different abstracts
   """
 
           with open(f'{output_dir}deployment_instructions.md', 'w') as f:
@@ -688,6 +725,10 @@
           print("- index.html (main survey)")
           print("- survey_questions.json (question structure)")
           print("- deployment_instructions.md (setup guide)")
+          print("\nTo test randomization:")
+          print("1. Open survey/index.html in browser")
+          print("2. Press F12 and run: refreshAbstracts()")
+          print("3. Refresh the page to see different abstracts")
 
   def main():
       generator = SurveyGenerator()
@@ -695,6 +736,7 @@
 
   if __name__ == "__main__":
       main()
+
 
 
 
