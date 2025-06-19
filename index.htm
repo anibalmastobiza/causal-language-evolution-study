@@ -36,6 +36,7 @@
               border: 1px solid #ddd;
               border-radius: 5px;
               background-color: white;
+              min-height: 100px;
           }
           .abstract-title {
               font-weight: bold;
@@ -45,6 +46,7 @@
           .abstract-text {
               line-height: 1.5;
               font-size: 14px;
+              color: #333;
           }
           .refresh-btn {
               background-color: #28a745;
@@ -54,6 +56,9 @@
               border-radius: 3px;
               cursor: pointer;
               margin-bottom: 10px;
+          }
+          .refresh-btn:hover {
+              background-color: #218838;
           }
           .likert-scale {
               display: flex;
@@ -105,6 +110,13 @@
               border-radius: 5px;
               transition: width 0.3s ease;
           }
+          select, input[type="number"] {
+              width: 100%;
+              padding: 8px;
+              border: 1px solid #ddd;
+              border-radius: 4px;
+              font-size: 14px;
+          }
       </style>
   </head>
   <body>
@@ -113,7 +125,8 @@
           <p>This survey examines how causal language affects the clarity and comprehension of philosophical abstracts.
           Your participation will contribute to research on improving academic communication in philosophy.</p>
 
-          <button class="refresh-btn" onclick="generateNewAbstracts()">🔄 Generate New Abstracts (for testing)</button>
+          <button class="refresh-btn" onclick="generateNewAbstracts()">🔄 Generate New Abstracts</button>
+          <div id="debug-info" style="font-size: 12px; color: #666; margin-bottom: 10px;"></div>
 
           <div class="progress-bar">
               <div class="progress-fill" id="progressFill" style="width: 0%"></div>
@@ -170,11 +183,11 @@
                   <div class="abstract-display">
                       <div class="abstract-box">
                           <div class="abstract-title">Abstract A</div>
-                          <div class="abstract-text" id="abstract1A">Loading...</div>
+                          <div class="abstract-text" id="abstract1A">Loading abstract...</div>
                       </div>
                       <div class="abstract-box">
                           <div class="abstract-title">Abstract B</div>
-                          <div class="abstract-text" id="abstract1B">Loading...</div>
+                          <div class="abstract-text" id="abstract1B">Loading abstract...</div>
                       </div>
                   </div>
               </div>
@@ -247,7 +260,7 @@
       </div>
 
       <script>
-          // Abstract templates
+          // Abstract templates with corrected content
           const abstractTemplates = [
               {
                   topic: "Consciousness and Free Will",
@@ -273,71 +286,118 @@
                   baseText: "This research examines moral obligations toward future generations in environmental policy. The study investigates how sustainability principles apply to resource management. Findings reveal relationships between ethical frameworks and conservation practices.",
                   highDensityTerms: ["presupposes intergenerational duty", "enables sustainable practice", "grounds environmental responsibility", "dialectical tension"],
                   lowDensityAlternatives: ["involves intergenerational duty", "supports sustainable practice", "basis for environmental responsibility", "tension"]
+              },
+              {
+                  topic: "Knowledge and Belief",
+                  baseText: "This article explores the epistemological distinction between knowledge and belief in scientific contexts. The study examines how evidential reasoning contributes to knowledge formation. Findings reveal connections between justification processes and truth conditions.",
+                  highDensityTerms: ["presupposes evidential grounding", "enables knowledge acquisition", "sustains belief formation", "reciprocal feedback"],
+                  lowDensityAlternatives: ["involves evidential grounding", "supports knowledge acquisition", "shows belief formation", "feedback"]
               }
           ];
 
           function generateAbstractPair() {
-              const template = abstractTemplates[Math.floor(Math.random() * abstractTemplates.length)];
+              try {
+                  const template = abstractTemplates[Math.floor(Math.random() * abstractTemplates.length)];
+                  console.log('Selected template:', template.topic);
 
-              // Generate high density version
-              let highDensityText = template.baseText;
-              template.highDensityTerms.forEach((term, index) => {
+                  // Generate high density version
+                  let highDensityText = template.baseText;
                   const sentences = highDensityText.split('. ');
-                  if (sentences[index]) {
-                      const words = sentences[index].split(' ');
-                      const insertPos = Math.floor(words.length / 2);
-                      words.splice(insertPos, 0, term);
-                      sentences[index] = words.join(' ');
-                      highDensityText = sentences.join('. ');
-                  }
-              });
 
-              // Generate low density version
-              let lowDensityText = template.baseText;
-              template.lowDensityAlternatives.forEach((term, index) => {
-                  const sentences = lowDensityText.split('. ');
-                  if (sentences[index]) {
-                      const words = sentences[index].split(' ');
-                      const insertPos = Math.floor(words.length / 2);
-                      words.splice(insertPos, 0, term);
-                      sentences[index] = words.join(' ');
-                      lowDensityText = sentences.join('. ');
-                  }
-              });
+                  template.highDensityTerms.forEach((term, index) => {
+                      if (sentences[index]) {
+                          const words = sentences[index].split(' ');
+                          const insertPos = Math.floor(words.length / 2);
+                          words.splice(insertPos, 0, term);
+                          sentences[index] = words.join(' ');
+                      }
+                  });
 
-              return {
-                  high: {
-                      text: highDensityText,
-                      topic: template.topic,
-                      type: 'high_density'
-                  },
-                  low: {
-                      text: lowDensityText,
-                      topic: template.topic,
-                      type: 'low_density'
-                  }
-              };
+                  highDensityText = sentences.join('. ');
+
+                  // Generate low density version
+                  let lowDensityText = template.baseText;
+                  const lowSentences = lowDensityText.split('. ');
+
+                  template.lowDensityAlternatives.forEach((term, index) => {
+                      if (lowSentences[index]) {
+                          const words = lowSentences[index].split(' ');
+                          const insertPos = Math.floor(words.length / 2);
+                          words.splice(insertPos, 0, term);
+                          lowSentences[index] = words.join(' ');
+                      }
+                  });
+
+                  lowDensityText = lowSentences.join('. ');
+
+                  return {
+                      high: {
+                          text: highDensityText,
+                          topic: template.topic,
+                          type: 'high_density'
+                      },
+                      low: {
+                          text: lowDensityText,
+                          topic: template.topic,
+                          type: 'low_density'
+                      }
+                  };
+              } catch (error) {
+                  console.error('Error generating abstract pair:', error);
+                  return {
+                      high: {
+                          text: "Error generating high density abstract",
+                          topic: "Error",
+                          type: 'high_density'
+                      },
+                      low: {
+                          text: "Error generating low density abstract",
+                          topic: "Error",
+                          type: 'low_density'
+                      }
+                  };
+              }
           }
 
           function generateNewAbstracts() {
-              const pair = generateAbstractPair();
+              try {
+                  console.log('Generating new abstracts...');
+                  const pair = generateAbstractPair();
 
-              // Randomly assign which is A and which is B
-              const isHighA = Math.random() > 0.5;
-              const abstractA = isHighA ? pair.high : pair.low;
-              const abstractB = isHighA ? pair.low : pair.high;
+                  // Randomly assign which is A and which is B
+                  const isHighA = Math.random() > 0.5;
+                  const abstractA = isHighA ? pair.high : pair.low;
+                  const abstractB = isHighA ? pair.low : pair.high;
 
-              // Update the abstracts
-              document.getElementById('abstract1A').textContent = abstractA.text;
-              document.getElementById('abstract1B').textContent = abstractB.text;
+                  // Find elements
+                  const elementA = document.getElementById('abstract1A');
+                  const elementB = document.getElementById('abstract1B');
+                  const debugInfo = document.getElementById('debug-info');
 
-              console.log('New abstracts generated:', abstractA.topic);
-              console.log('Abstract A type:', abstractA.type);
-              console.log('Abstract B type:', abstractB.type);
+                  if (elementA && elementB) {
+                      // Update the abstracts
+                      elementA.textContent = abstractA.text;
+                      elementB.textContent = abstractB.text;
+
+                      // Update debug info
+                      debugInfo.textContent = `Topic: ${abstractA.topic} | A: ${abstractA.type} | B: ${abstractB.type}`;
+
+                      console.log('Abstracts updated successfully');
+                      console.log('Abstract A:', abstractA.type, '-', abstractA.text.substring(0, 50) + '...');
+                      console.log('Abstract B:', abstractB.type, '-', abstractB.text.substring(0, 50) + '...');
+                  } else {
+                      console.error('Could not find abstract elements');
+                      console.log('Element A found:', !!elementA);
+                      console.log('Element B found:', !!elementB);
+                  }
+              } catch (error) {
+                  console.error('Error in generateNewAbstracts:', error);
+              }
           }
 
-          // Generate abstracts when page loads
+          // Initialize when page loads
           document.addEventListener('DOMContentLoaded', function() {
+              console.log('Page loaded, generating initial abstracts...');
               generateNewAbstracts();
 
               // Form submission
@@ -348,9 +408,10 @@
               });
           });
 
-          // Refresh abstracts on page refresh
-          window.addEventListener('beforeunload', function() {
-              generateNewAbstracts();
+          // Also generate on page refresh
+          window.addEventListener('load', function() {
+              console.log('Window loaded, generating abstracts...');
+              setTimeout(generateNewAbstracts, 100);
           });
       </script>
   </body>
