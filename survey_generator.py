@@ -1,472 +1,700 @@
-import random                                                            │ │
-│ │ import json                                                              │ │
-│ │ from typing import Dict, List, Tuple                                     │ │
-│ │ from dataclasses import dataclass                                        │ │
-│ │                                                                          │ │
-│ │ @dataclass                                                               │ │
-│ │ class AbstractTemplate:                                                  │ │
-│ │     topic: str                                                           │ │
-│ │     base_text: str                                                       │ │
-│ │     high_density_terms: List[str]                                        │ │
-│ │     low_density_alternatives: List[str]                                  │ │
-│ │                                                                          │ │
-│ │ class AbstractGenerator:                                                 │ │
-│ │     def __init__(self):                                                  │ │
-│ │         self.causal_terms = {                                            │ │
-│ │             'enablement_foundation': [                                   │ │
-│ │                 'sustains', 'underlies', 'enables', 'facilitates',       │ │
-│ │ 'grounds',                                                               │ │
-│ │                 'presupposes', 'supports', 'forms the foundation',       │ │
-│ │ 'serves as basis',                                                       │ │
-│ │                 'provides the groundwork', 'establishes the framework'   │ │
-│ │             ],                                                           │ │
-│ │             'inhibition_prevention': [                                   │ │
-│ │                 'inhibits', 'prevents', 'constrains', 'limits',          │ │
-│ │ 'blocks',                                                                │ │
-│ │                 'hinders', 'restricts', 'impedes', 'obstructs',          │ │
-│ │ 'diminishes'                                                             │ │
-│ │             ],                                                           │ │
-│ │             'reciprocal_causal': [                                       │ │
-│ │                 'reciprocal processes', 'dialectical relationship',      │ │
-│ │ 'bidirectional effects',                                                 │ │
-│ │                 'mutual influence', 'feedback loops', 'circular          │ │
-│ │ causation',                                                              │ │
-│ │                 'interdependent mechanisms', 'interactive dynamics'      │ │
-│ │             ],                                                           │ │
-│ │             'phraseological': [                                          │ │
-│ │                 'cornerstone', 'catalyst', 'driving force', 'key         │ │
-│ │ factor',                                                                 │ │
-│ │                 'crucial element', 'plays a pivotal role', 'serves as',  │ │
-│ │                 'functions as', 'translates into', 'gives rise to'       │ │
-│ │             ],                                                           │ │
-│ │             'statistical_terms': [                                       │ │
-│ │                 'significant predictor', 'explains variance', 'mediating │ │
-│ │  variable',                                                              │ │
-│ │                 'moderating effect', 'statistical significance',         │ │
-│ │ 'correlation',                                                           │ │
-│ │                 'regression analysis reveals', 'predictive model'        │ │
-│ │             ],                                                           │ │
-│ │             'mediation_moderation': [                                    │ │
-│ │                 'mediating pathways', 'indirect effects', 'moderating    │ │
-│ │ factors',                                                                │ │
-│ │                 'intervening mechanisms', 'conditional effects',         │ │
-│ │ 'pathway analysis'                                                       │ │
-│ │             ]                                                            │ │
-│ │         }                                                                │ │
-│ │                                                                          │ │
-│ │         self.neutral_alternatives = {                                    │ │
-│ │             'sustains': 'shows', 'underlies': 'relates to', 'enables':   │ │
-│ │ 'allows',                                                                │ │
-│ │             'inhibits': 'affects', 'prevents': 'reduces', 'constrains':  │ │
-│ │ 'influences',                                                            │ │
-│ │             'reciprocal processes': 'processes', 'dialectical            │ │
-│ │ relationship': 'relationship',                                           │ │
-│ │             'cornerstone': 'element', 'catalyst': 'factor', 'significant │ │
-│ │  predictor': 'factor',                                                   │ │
-│ │             'mediating pathways': 'pathways', 'indirect effects':        │ │
-│ │ 'effects'                                                                │ │
-│ │         }                                                                │ │
-│ │                                                                          │ │
-│ │         self.abstract_templates = self._create_abstract_templates()      │ │
-│ │                                                                          │ │
-│ │     def _create_abstract_templates(self) -> List[AbstractTemplate]:      │ │
-│ │         """Create diverse philosophical abstract templates."""           │ │
-│ │         return [                                                         │ │
-│ │             AbstractTemplate(                                            │ │
-│ │                 topic="Consciousness and Free Will",                     │ │
-│ │                 base_text="This investigation examines the relationship  │ │
-│ │ between consciousness and free will in moral decision-making. The        │ │
-│ │ research explores how cognitive processes contribute to autonomous       │ │
-│ │ choice. Analysis demonstrates connections between neural activity and    │ │
-│ │ ethical reasoning through various pathways.",                            │ │
-│ │                 high_density_terms=[                                     │ │
-│ │                     "sustains that consciousness", "underlies moral      │ │
-│ │ agency", "enables autonomous choice",                                    │ │
-│ │                     "mediating pathways", "serves as the cornerstone",   │ │
-│ │ "reciprocal processes",                                                  │ │
-│ │                     "significant predictor of", "translates into         │ │
-│ │ behavioral outcomes"                                                     │ │
-│ │                 ],                                                       │ │
-│ │                 low_density_alternatives=[                               │ │
-│ │                     "shows that consciousness", "relates to moral        │ │
-│ │ agency", "allows autonomous choice",                                     │ │
-│ │                     "pathways", "important element", "processes",        │ │
-│ │                     "factor in", "leads to behavioral outcomes"          │ │
-│ │                 ]                                                        │ │
-│ │             ),                                                           │ │
-│ │                                                                          │ │
-│ │             AbstractTemplate(                                            │ │
-│ │                 topic="Artificial Intelligence Ethics",                  │ │
-│ │                 base_text="This study analyzes ethical frameworks for    │ │
-│ │ artificial intelligence development. The research investigates how moral │ │
-│ │  principles apply to algorithmic decision-making. Results show           │ │
-│ │ relationships between computational processes and ethical considerations │ │
-│ │  through systematic analysis.",                                          │ │
-│ │                 high_density_terms=[                                     │ │
-│ │                     "underlies ethical reasoning", "facilitates moral    │ │
-│ │ judgment", "constrains algorithmic bias",                                │ │
-│ │                     "dialectical relationship", "functions as catalyst", │ │
-│ │  "mediating variables",                                                  │ │
-│ │                     "explains variance in", "inhibits discriminatory     │ │
-│ │ outcomes"                                                                │ │
-│ │                 ],                                                       │ │
-│ │                 low_density_alternatives=[                               │ │
-│ │                     "relates to ethical reasoning", "supports moral      │ │
-│ │ judgment", "reduces algorithmic bias",                                   │ │
-│ │                     "relationship", "acts as factor", "variables",       │ │
-│ │                     "accounts for variation in", "reduces discriminatory │ │
-│ │  outcomes"                                                               │ │
-│ │                 ]                                                        │ │
-│ │             ),                                                           │ │
-│ │                                                                          │ │
-│ │             AbstractTemplate(                                            │ │
-│ │                 topic="Knowledge and Belief",                            │ │
-│ │                 base_text="This article explores the epistemological     │ │
-│ │ distinction between knowledge and belief in scientific contexts. The     │ │
-│ │ study examines how evidential reasoning contributes to knowledge         │ │
-│ │ formation. Findings reveal connections between justification processes   │ │
-│ │ and truth conditions.",                                                  │ │
-│ │                 high_density_terms=[                                     │ │
-│ │                     "presupposes evidential grounding", "enables         │ │
-│ │ knowledge acquisition", "sustains belief formation",                     │ │
-│ │                     "reciprocal feedback", "cornerstone of               │ │
-│ │ epistemology", "mediating role of",                                      │ │
-│ │                     "predictive model shows", "gives rise to justified   │ │
-│ │ belief"                                                                  │ │
-│ │                 ],                                                       │ │
-│ │                 low_density_alternatives=[                               │ │
-│ │                     "involves evidential grounding", "supports knowledge │ │
-│ │  acquisition", "shows belief formation",                                 │ │
-│ │                     "feedback", "central to epistemology", "role of",    │ │
-│ │                     "model shows", "results in justified belief"         │ │
-│ │                 ]                                                        │ │
-│ │             ),                                                           │ │
-│ │                                                                          │ │
-│ │             AbstractTemplate(                                            │ │
-│ │                 topic="Social Justice Theory",                           │ │
-│ │                 base_text="This research examines distributive justice   │ │
-│ │ principles in contemporary political philosophy. The analysis            │ │
-│ │ investigates how institutional frameworks affect social equality. The    │ │
-│ │ study explores relationships between policy mechanisms and equitable     │ │
-│ │ outcomes.",                                                              │ │
-│ │                 high_density_terms=[                                     │ │
-│ │                     "underlies distributive fairness", "facilitates      │ │
-│ │ social equity", "constrains inequality",                                 │ │
-│ │                     "bidirectional causation", "driving force behind",   │ │
-│ │ "indirect effects of",                                                   │ │
-│ │                     "regression analysis reveals", "moderating influence │ │
-│ │  on"                                                                     │ │
-│ │                 ],                                                       │ │
-│ │                 low_density_alternatives=[                               │ │
-│ │                     "supports distributive fairness", "promotes social   │ │
-│ │ equity", "reduces inequality",                                           │ │
-│ │                     "causation", "important factor in", "effects of",    │ │
-│ │                     "analysis reveals", "influence on"                   │ │
-│ │                 ]                                                        │ │
-│ │             ),                                                           │ │
-│ │                                                                          │ │
-│ │             AbstractTemplate(                                            │ │
-│ │                 topic="Moral Psychology",                                │ │
-│ │                 base_text="This investigation analyzes the psychological │ │
-│ │  foundations of moral reasoning across cultures. The research examines   │ │
-│ │ how emotional responses relate to ethical judgments. Results demonstrate │ │
-│ │  patterns in the relationship between affect and moral cognition.",      │ │
-│ │                 high_density_terms=[                                     │ │
-│ │                     "grounds moral intuition", "enables ethical          │ │
-│ │ reasoning", "sustains cultural values",                                  │ │
-│ │                     "circular causation between", "serves as catalyst    │ │
-│ │ for", "mediating pathways",                                              │ │
-│ │                     "significant correlation with", "translates into     │ │
-│ │ moral behavior"                                                          │ │
-│ │                 ],                                                       │ │
-│ │                 low_density_alternatives=[                               │ │
-│ │                     "supports moral intuition", "aids ethical            │ │
-│ │ reasoning", "maintains cultural values",                                 │ │
-│ │                     "relationship between", "factor for", "pathways",    │ │
-│ │                     "correlation with", "leads to moral behavior"        │ │
-│ │                 ]                                                        │ │
-│ │             ),                                                           │ │
-│ │                                                                          │ │
-│ │             AbstractTemplate(                                            │ │
-│ │                 topic="Philosophy of Mind",                              │ │
-│ │                 base_text="This study investigates the relationship      │ │
-│ │ between mental states and physical processes in cognitive science. The   │ │
-│ │ research explores how neural mechanisms relate to conscious experience.  │ │
-│ │ Analysis examines connections between brain activity and subjective      │ │
-│ │ phenomena.",                                                             │ │
-│ │                 high_density_terms=[                                     │ │
-│ │                     "underlies conscious experience", "facilitates       │ │
-│ │ mental representation", "constrains cognitive processing",               │ │
-│ │                     "reciprocal interactions", "foundational to",        │ │
-│ │ "conditional effects of",                                                │ │
-│ │                     "explains variance in consciousness", "inhibits      │ │
-│ │ reductive explanations"                                                  │ │
-│ │                 ],                                                       │ │
-│ │                 low_density_alternatives=[                               │ │
-│ │                     "relates to conscious experience", "supports mental  │ │
-│ │ representation", "affects cognitive processing",                         │ │
-│ │                     "interactions", "important for", "effects of",       │ │
-│ │                     "variation in consciousness", "challenges reductive  │ │
-│ │ explanations"                                                            │ │
-│ │                 ]                                                        │ │
-│ │             ),                                                           │ │
-│ │                                                                          │ │
-│ │             AbstractTemplate(                                            │ │
-│ │                 topic="Environmental Ethics",                            │ │
-│ │                 base_text="This research examines moral obligations      │ │
-│ │ toward future generations in environmental policy. The study             │ │
-│ │ investigates how sustainability principles apply to resource management. │ │
-│ │  Findings reveal relationships between ethical frameworks and            │ │
-│ │ conservation practices.",                                                │ │
-│ │                 high_density_terms=[                                     │ │
-│ │                     "presupposes intergenerational duty", "enables       │ │
-│ │ sustainable practice", "grounds environmental responsibility",           │ │
-│ │                     "dialectical tension", "cornerstone of               │ │
-│ │ sustainability", "mediating role",                                       │ │
-│ │                     "predictive indicators of", "gives rise to           │ │
-│ │ conservation behavior"                                                   │ │
-│ │                 ],                                                       │ │
-│ │                 low_density_alternatives=[                               │ │
-│ │                     "involves intergenerational duty", "supports         │ │
-│ │ sustainable practice", "basis for environmental responsibility",         │ │
-│ │                     "tension", "central to sustainability", "role",      │ │
-│ │                     "indicators of", "results in conservation behavior"  │ │
-│ │                 ]                                                        │ │
-│ │             ),                                                           │ │
-│ │                                                                          │ │
-│ │             AbstractTemplate(                                            │ │
-│ │                 topic="Philosophy of Language",                          │ │
-│ │                 base_text="This investigation analyzes the relationship  │ │
-│ │ between meaning and context in linguistic communication. The research    │ │
-│ │ examines how pragmatic factors influence semantic interpretation. The    │ │
-│ │ study explores connections between speaker intention and listener        │ │
-│ │ comprehension.",                                                         │ │
-│ │                 high_density_terms=[                                     │ │
-│ │                     "underlies semantic content", "facilitates           │ │
-│ │ linguistic understanding", "constrains interpretation",                  │ │
-│ │                     "feedback mechanisms", "driving force in             │ │
-│ │ communication", "indirect pathways",                                     │ │
-│ │                     "correlation analysis shows", "moderates             │ │
-│ │ comprehension processes"                                                 │ │
-│ │                 ],                                                       │ │
-│ │                 low_density_alternatives=[                               │ │
-│ │                     "relates to semantic content", "aids linguistic      │ │
-│ │ understanding", "affects interpretation",                                │ │
-│ │                     "mechanisms", "factor in communication", "pathways", │ │
-│ │                     "analysis shows", "influences comprehension          │ │
-│ │ processes"                                                               │ │
-│ │                 ]                                                        │ │
-│ │             ),                                                           │ │
-│ │                                                                          │ │
-│ │             AbstractTemplate(                                            │ │
-│ │                 topic="Political Philosophy",                            │ │
-│ │                 base_text="This study examines democratic legitimacy in  │ │
-│ │ pluralistic societies. The research investigates how institutional       │ │
-│ │ design affects political representation. Analysis explores relationships │ │
-│ │  between governance structures and citizen participation.",              │ │
-│ │                 high_density_terms=[                                     │ │
-│ │                     "sustains democratic legitimacy", "enables political │ │
-│ │  representation", "facilitates civic engagement",                        │ │
-│ │                     "reciprocal relationship", "serves as foundation",   │ │
-│ │ "mediating institutions",                                                │ │
-│ │                     "significant predictors of participation",           │ │
-│ │ "translates into democratic outcomes"                                    │ │
-│ │                 ],                                                       │ │
-│ │                 low_density_alternatives=[                               │ │
-│ │                     "supports democratic legitimacy", "allows political  │ │
-│ │ representation", "promotes civic engagement",                            │ │
-│ │                     "relationship", "acts as foundation",                │ │
-│ │ "institutions",                                                          │ │
-│ │                     "predictors of participation", "leads to democratic  │ │
-│ │ outcomes"                                                                │ │
-│ │                 ]                                                        │ │
-│ │             ),                                                           │ │
-│ │                                                                          │ │
-│ │             AbstractTemplate(                                            │ │
-│ │                 topic="Philosophy of Science",                           │ │
-│ │                 base_text="This research analyzes the role of scientific │ │
-│ │  models in theoretical understanding. The study examines how             │ │
-│ │ representational structures contribute to scientific explanation.        │ │
-│ │ Findings demonstrate patterns in the relationship between models and     │ │
-│ │ empirical adequacy.",                                                    │ │
-│ │                 high_density_terms=[                                     │ │
-│ │                     "underlies theoretical representation", "enables     │ │
-│ │ scientific understanding", "grounds explanatory power",                  │ │
-│ │                     "bidirectional validation", "cornerstone of          │ │
-│ │ scientific method", "conditional mechanisms",                            │ │
-│ │                     "regression models indicate", "inhibits theoretical  │ │
-│ │ reduction"                                                               │ │
-│ │                 ],                                                       │ │
-│ │                 low_density_alternatives=[                               │ │
-│ │                     "supports theoretical representation", "aids         │ │
-│ │ scientific understanding", "basis for explanatory power",                │ │
-│ │                     "validation", "central to scientific method",        │ │
-│ │ "mechanisms",                                                            │ │
-│ │                     "models indicate", "challenges theoretical           │ │
-│ │ reduction"                                                               │ │
-│ │                 ]                                                        │ │
-│ │             )                                                            │ │
-│ │         ]                                                                │ │
-│ │                                                                          │ │
-│ │     def generate_abstract_pair(self) -> Tuple[Dict, Dict]:               │ │
-│ │         """Generate a randomized pair of high and low density            │ │
-│ │ abstracts."""                                                            │ │
-│ │         template = random.choice(self.abstract_templates)                │ │
-│ │                                                                          │ │
-│ │         # Generate high density version                                  │ │
-│ │         high_density = self._create_high_density_abstract(template)      │ │
-│ │                                                                          │ │
-│ │         # Generate low density version                                   │ │
-│ │         low_density = self._create_low_density_abstract(template)        │ │
-│ │                                                                          │ │
-│ │         return high_density, low_density                                 │ │
-│ │                                                                          │ │
-│ │     def _create_high_density_abstract(self, template: AbstractTemplate)  │ │
-│ │ -> Dict:                                                                 │ │
-│ │         """Create high causal density abstract from template."""         │ │
-│ │         # Replace base terms with high density causal terms              │ │
-│ │         text = template.base_text                                        │ │
-│ │                                                                          │ │
-│ │         # Add causal terms strategically                                 │ │
-│ │         sentences = text.split('. ')                                     │ │
-│ │         enhanced_sentences = []                                          │ │
-│ │                                                                          │ │
-│ │         for i, sentence in enumerate(sentences):                         │ │
-│ │             if i < len(template.high_density_terms):                     │ │
-│ │                 # Insert causal term                                     │ │
-│ │                 causal_term = template.high_density_terms[i]             │ │
-│ │                 # Find a suitable insertion point                        │ │
-│ │                 words = sentence.split()                                 │ │
-│ │                 if len(words) > 5:                                       │ │
-│ │                     insertion_point = len(words) // 2                    │ │
-│ │                     words.insert(insertion_point, causal_term)           │ │
-│ │                     sentence = ' '.join(words)                           │ │
-│ │             enhanced_sentences.append(sentence)                          │ │
-│ │                                                                          │ │
-│ │         enhanced_text = '. '.join(enhanced_sentences)                    │ │
-│ │                                                                          │ │
-│ │         # Calculate density                                              │ │
-│ │         density = self._calculate_density(enhanced_text)                 │ │
-│ │                                                                          │ │
-│ │         return {                                                         │ │
-│ │             'id': f'hd_{template.topic.lower().replace(" ",              │ │
-│ │ "_")}_{random.randint(1000, 9999)}',                                     │ │
-│ │             'text': enhanced_text,                                       │ │
-│ │             'topic': template.topic,                                     │ │
-│ │             'density': density,                                          │ │
-│ │             'type': 'high_density'                                       │ │
-│ │         }                                                                │ │
-│ │                                                                          │ │
-│ │     def _create_low_density_abstract(self, template: AbstractTemplate)   │ │
-│ │ -> Dict:                                                                 │ │
-│ │         """Create low causal density abstract from template."""          │ │
-│ │         text = template.base_text                                        │ │
-│ │                                                                          │ │
-│ │         # Replace any existing causal terms with neutral alternatives    │ │
-│ │         for causal_term, neutral_term in                                 │ │
-│ │ self.neutral_alternatives.items():                                       │ │
-│ │             text = text.replace(causal_term, neutral_term)               │ │
-│ │                                                                          │ │
-│ │         # Use low density alternatives                                   │ │
-│ │         sentences = text.split('. ')                                     │ │
-│ │         enhanced_sentences = []                                          │ │
-│ │                                                                          │ │
-│ │         for i, sentence in enumerate(sentences):                         │ │
-│ │             if i < len(template.low_density_alternatives):               │ │
-│ │                 alt_term = template.low_density_alternatives[i]          │ │
-│ │                 words = sentence.split()                                 │ │
-│ │                 if len(words) > 5:                                       │ │
-│ │                     insertion_point = len(words) // 2                    │ │
-│ │                     words.insert(insertion_point, alt_term)              │ │
-│ │                     sentence = ' '.join(words)                           │ │
-│ │             enhanced_sentences.append(sentence)                          │ │
-│ │                                                                          │ │
-│ │         enhanced_text = '. '.join(enhanced_sentences)                    │ │
-│ │         density = self._calculate_density(enhanced_text)                 │ │
-│ │                                                                          │ │
-│ │         return {                                                         │ │
-│ │             'id': f'ld_{template.topic.lower().replace(" ",              │ │
-│ │ "_")}_{random.randint(1000, 9999)}',                                     │ │
-│ │             'text': enhanced_text,                                       │ │
-│ │             'topic': template.topic,                                     │ │
-│ │             'density': density,                                          │ │
-│ │             'type': 'low_density'                                        │ │
-│ │         }                                                                │ │
-│ │                                                                          │ │
-│ │     def _calculate_density(self, text: str) -> float:                    │ │
-│ │         """Calculate causal term density per 100 words."""               │ │
-│ │         words = len(text.split())                                        │ │
-│ │         causal_count = 0                                                 │ │
-│ │                                                                          │ │
-│ │         text_lower = text.lower()                                        │ │
-│ │         for category_terms in self.causal_terms.values():                │ │
-│ │             for term in category_terms:                                  │ │
-│ │                 causal_count += text_lower.count(term.lower())           │ │
-│ │                                                                          │ │
-│ │         return (causal_count / words) * 100 if words > 0 else 0          │ │
-│ │                                                                          │ │
-│ │     def generate_multiple_pairs(self, n_pairs: int = 20) ->              │ │
-│ │ List[Tuple[Dict, Dict]]:                                                 │ │
-│ │         """Generate multiple abstract pairs for randomization."""        │ │
-│ │         pairs = []                                                       │ │
-│ │         for _ in range(n_pairs):                                         │ │
-│ │             pair = self.generate_abstract_pair()                         │ │
-│ │             pairs.append(pair)                                           │ │
-│ │         return pairs                                                     │ │
-│ │                                                                          │ │
-│ │     def save_abstract_pool(self, n_pairs: int = 50, filename: str =      │ │
-│ │ 'abstract_pool.json'):                                                   │ │
-│ │         """Generate and save large pool of abstracts for study."""       │ │
-│ │         pairs = self.generate_multiple_pairs(n_pairs)                    │ │
-│ │                                                                          │ │
-│ │         # Format for OSF/supplementary material                          │ │
-│ │         abstract_pool = {                                                │ │
-│ │             'metadata': {                                                │ │
-│ │                 'total_pairs': n_pairs,                                  │ │
-│ │                 'generation_method': 'systematic_template_based',        │ │
-│ │                 'topics_covered': [template.topic for template in        │ │
-│ │ self.abstract_templates],                                                │ │
-│ │                 'causal_categories': list(self.causal_terms.keys()),     │ │
-│ │                 'quality_control': 'manual_review_required'              │ │
-│ │             },                                                           │ │
-│ │             'abstracts': []                                              │ │
-│ │         }                                                                │ │
-│ │                                                                          │ │
-│ │         for i, (high, low) in enumerate(pairs):                          │ │
-│ │             abstract_pool['abstracts'].append({                          │ │
-│ │                 'pair_id': i + 1,                                        │ │
-│ │                 'high_density': high,                                    │ │
-│ │                 'low_density': low,                                      │ │
-│ │                 'topic_match': high['topic'] == low['topic']             │ │
-│ │             })                                                           │ │
-│ │                                                                          │ │
-│ │         with open(filename, 'w') as f:                                   │ │
-│ │             json.dump(abstract_pool, f, indent=2)                        │ │
-│ │                                                                          │ │
-│ │         print(f"Generated {n_pairs} abstract pairs saved to {filename}") │ │
-│ │         print(f"Topics covered: {len(self.abstract_templates)}")         │ │
-│ │         return abstract_pool                                             │ │
-│ │                                                                          │ │
-│ │ def main():                                                              │ │
-│ │     generator = AbstractGenerator()                                      │ │
-│ │                                                                          │ │
-│ │     # Generate sample pair                                               │ │
-│ │     high, low = generator.generate_abstract_pair()                       │ │
-│ │     print("Sample High Density Abstract:")                               │ │
-│ │     print(f"Topic: {high['topic']}")                                     │ │
-│ │     print(f"Density: {high['density']:.2f}")                             │ │
-│ │     print(f"Text: {high['text']}")                                       │ │
-│ │     print()                                                              │ │
-│ │     print("Sample Low Density Abstract:")                                │ │
-│ │     print(f"Topic: {low['topic']}")                                      │ │
-│ │     print(f"Density: {low['density']:.2f}")                              │ │
-│ │     print(f"Text: {low['text']}")                                        │ │
-│ │                                                                          │ │
-│ │     # Generate pool for study                                            │ │
-│ │     pool = generator.save_abstract_pool(50)                              │ │
-│ │                                                                          │ │
-│ │ if __name__ == "__main__":                                               │ │
-│ │     main()            
+ import json
+  import random
+  from typing import Dict, List, Tuple
+  from pathlib import Path
+  import sys
+  import os
+
+  # Add src directory to path to import AbstractGenerator
+  sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
+  from abstract_generator import AbstractGenerator
+
+  class SurveyGenerator:
+      def __init__(self):
+          self.abstract_generator = AbstractGenerator()
+          # Generate random abstracts each time the survey is created
+          self.abstract_pairs = self._generate_random_abstract_pairs()
+
+      def generate_survey_questions(self) -> List[Dict]:
+          """Generate structured survey questions for causal language 
+  assessment."""
+          questions = []
+
+          # Demographic questions
+          questions.append({
+              "id": "demo_age",
+              "type": "number",
+              "question": "What is your age?",
+              "required": True,
+              "min_value": 18,
+              "max_value": 100
+          })
+
+          questions.append({
+              "id": "demo_education",
+              "type": "select",
+              "question": "What is your highest level of education?",
+              "options": [
+                  "High school or equivalent",
+                  "Some college",
+                  "Bachelor's degree",
+                  "Master's degree",
+                  "Doctoral degree",
+                  "Other"
+              ],
+              "required": True
+          })
+
+          questions.append({
+              "id": "demo_philosophy_familiarity",
+              "type": "likert",
+              "question": "How familiar are you with philosophical academic
+   writing?",
+              "scale": 5,
+              "labels": ["Not at all familiar", "Slightly familiar",
+  "Moderately familiar",
+                        "Very familiar", "Extremely familiar"],
+              "required": True
+          })
+
+          # Abstract comparison questions
+          abstract_pairs = self._create_abstract_pairs()
+
+          for i, (high_density, low_density) in enumerate(abstract_pairs):
+              questions.extend([
+                  {
+                      "id": f"abstract_pair_{i+1}_presentation",
+                      "type": "display",
+                      "content": {
+                          "abstract_a": {
+                              "title": f"Abstract A",
+                              "text": high_density["text"]
+                          },
+                          "abstract_b": {
+                              "title": f"Abstract B",
+                              "text": low_density["text"]
+                          }
+                      }
+                  },
+                  {
+                      "id": f"abstract_pair_{i+1}_clarity",
+                      "type": "select",
+                      "question": "Which abstract is clearer and easier to 
+  understand?",
+                      "options": ["Abstract A", "Abstract B", "Both are 
+  equally clear", "Neither is clear"],
+                      "required": True
+                  },
+                  {
+                      "id": f"abstract_pair_{i+1}_clarity_rating_a",
+                      "type": "likert",
+                      "question": "Rate the clarity of Abstract A:",
+                      "scale": 5,
+                      "labels": ["Very unclear", "Unclear", "Neutral",
+  "Clear", "Very clear"],
+                      "required": True
+                  },
+                  {
+                      "id": f"abstract_pair_{i+1}_clarity_rating_b",
+                      "type": "likert",
+                      "question": "Rate the clarity of Abstract B:",
+                      "scale": 5,
+                      "labels": ["Very unclear", "Unclear", "Neutral",
+  "Clear", "Very clear"],
+                      "required": True
+                  },
+                  {
+                      "id": f"abstract_pair_{i+1}_cognitive_load_a",
+                      "type": "likert",
+                      "question": "How much mental effort did Abstract A 
+  require to understand?",
+                      "scale": 5,
+                      "labels": ["Very little effort", "Little effort",
+  "Moderate effort",
+                                "Much effort", "Very much effort"],
+                      "required": True
+                  },
+                  {
+                      "id": f"abstract_pair_{i+1}_cognitive_load_b",
+                      "type": "likert",
+                      "question": "How much mental effort did Abstract B 
+  require to understand?",
+                      "scale": 5,
+                      "labels": ["Very little effort", "Little effort",
+  "Moderate effort",
+                                "Much effort", "Very much effort"],
+                      "required": True
+                  },
+                  {
+                      "id": f"abstract_pair_{i+1}_causal_language_a",
+                      "type": "likert",
+                      "question": "Rate the use of causal language (words 
+  indicating cause-effect relationships) in Abstract A:",
+                      "scale": 5,
+                      "labels": ["Too little", "Too few", "Just right",
+  "Too many", "Far too many"],
+                      "required": True
+                  },
+                  {
+                      "id": f"abstract_pair_{i+1}_causal_language_b",
+                      "type": "likert",
+                      "question": "Rate the use of causal language (words 
+  indicating cause-effect relationships) in Abstract B:",
+                      "scale": 5,
+                      "labels": ["Too little", "Too few", "Just right",
+  "Too many", "Far too many"],
+                      "required": True
+                  }
+              ])
+
+          # General assessment questions
+          questions.extend([
+              {
+                  "id": "general_causal_preference",
+                  "type": "likert",
+                  "question": "In general, do you prefer academic abstracts
+   that use more explicit causal language?",
+                  "scale": 5,
+                  "labels": ["Strongly disagree", "Disagree", "Neutral",
+  "Agree", "Strongly agree"],
+                  "required": True
+              },
+              {
+                  "id": "general_comprehension_impact",
+                  "type": "likert",
+                  "question": "Do you think explicit causal language 
+  improves comprehension of philosophical texts?",
+                  "scale": 5,
+                  "labels": ["Strongly disagree", "Disagree", "Neutral",
+  "Agree", "Strongly agree"],
+                  "required": True
+              },
+              {
+                  "id": "open_feedback",
+                  "type": "textarea",
+                  "question": "Please provide any additional comments about
+   causal language in philosophical writing:",
+                  "required": False,
+                  "placeholder": "Your thoughts on the use of causal 
+  language in academic philosophy..."
+              }
+          ])
+
+          return questions
+
+      def _generate_random_abstract_pairs(self) -> List[Tuple[Dict, Dict]]:
+          """Generate fresh random abstract pairs using 
+  AbstractGenerator."""
+          return self.abstract_generator.generate_multiple_pairs(3)  # 3 
+  pairs for survey
+
+      def _create_abstract_pairs(self) -> List[Tuple[Dict, Dict]]:
+          """Return the pre-generated random abstract pairs."""
+          return self.abstract_pairs
+
+      def generate_html_survey(self, questions: List[Dict]) -> str:
+          """Generate HTML survey for GitHub Pages deployment."""
+          html_template = """
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, 
+  initial-scale=1.0">
+      <title>Causal Language in Philosophy Survey</title>
+      <style>
+          body {
+              font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+              max-width: 800px;
+              margin: 0 auto;
+              padding: 20px;
+              line-height: 1.6;
+              background-color: #f5f5f5;
+          }
+          .survey-container {
+              background-color: white;
+              padding: 30px;
+              border-radius: 10px;
+              box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+          }
+          .question-block {
+              margin-bottom: 25px;
+              padding: 20px;
+              border-left: 4px solid #007bff;
+              background-color: #f8f9fa;
+          }
+          .abstract-display {
+              display: flex;
+              gap: 20px;
+              margin: 20px 0;
+          }
+          .abstract-box {
+              flex: 1;
+              padding: 15px;
+              border: 1px solid #ddd;
+              border-radius: 5px;
+              background-color: white;
+          }
+          .abstract-title {
+              font-weight: bold;
+              margin-bottom: 10px;
+              color: #007bff;
+          }
+          .likert-scale {
+              display: flex;
+              justify-content: space-between;
+              margin: 10px 0;
+          }
+          .likert-option {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              flex: 1;
+              margin: 0 5px;
+          }
+          .likert-option input[type="radio"] {
+              margin-bottom: 5px;
+          }
+          .likert-option label {
+              font-size: 0.9em;
+              text-align: center;
+          }
+          .question-title {
+              font-weight: bold;
+              margin-bottom: 10px;
+              color: #333;
+          }
+          .submit-btn {
+              background-color: #007bff;
+              color: white;
+              padding: 12px 30px;
+              border: none;
+              border-radius: 5px;
+              font-size: 16px;
+              cursor: pointer;
+              margin-top: 20px;
+          }
+          .submit-btn:hover {
+              background-color: #0056b3;
+          }
+          .progress-bar {
+              width: 100%;
+              height: 10px;
+              background-color: #e0e0e0;
+              border-radius: 5px;
+              margin-bottom: 20px;
+          }
+          .progress-fill {
+              height: 100%;
+              background-color: #007bff;
+              border-radius: 5px;
+              transition: width 0.3s ease;
+          }
+      </style>
+  </head>
+  <body>
+      <div class="survey-container">
+          <h1>Causal Language in Philosophical Writing Survey</h1>
+          <p>This survey examines how causal language affects the clarity 
+  and comprehension of philosophical abstracts. 
+          Your participation will contribute to research on improving 
+  academic communication in philosophy.</p>
+          
+          <div class="progress-bar">
+              <div class="progress-fill" id="progressFill" style="width: 
+  0%"></div>
+          </div>
+          
+          <form id="surveyForm">
+              {questions_html}
+              
+              <button type="submit" class="submit-btn">Submit 
+  Survey</button>
+          </form>
+      </div>
+      
+      <script>
+          {javascript_code}
+      </script>
+  </body>
+  </html>
+          """
+
+          questions_html = self._generate_questions_html(questions)
+          javascript_code = self._generate_javascript_code(questions)
+
+          return html_template.replace("{questions_html}",
+  questions_html).replace("{javascript_code}", javascript_code)
+
+      def _generate_questions_html(self, questions: List[Dict]) -> str:
+          """Generate HTML for survey questions."""
+          html_parts = []
+
+          for i, question in enumerate(questions):
+              if question["type"] == "display":
+
+  html_parts.append(self._create_abstract_display_html(question, i))
+              elif question["type"] == "likert":
+                  html_parts.append(self._create_likert_html(question, i))
+              elif question["type"] == "select":
+                  html_parts.append(self._create_select_html(question, i))
+              elif question["type"] == "number":
+                  html_parts.append(self._create_number_html(question, i))
+              elif question["type"] == "textarea":
+                  html_parts.append(self._create_textarea_html(question,
+  i))
+
+          return "\n".join(html_parts)
+
+      def _create_abstract_display_html(self, question: Dict, index: int) 
+  -> str:
+          """Create HTML for abstract display."""
+          content = question["content"]
+          return f"""
+          <div class="question-block" data-question="{index}">
+              <div class="abstract-display">
+                  <div class="abstract-box">
+                      <div 
+  class="abstract-title">{content['abstract_a']['title']}</div>
+                      <div>{content['abstract_a']['text']}</div>
+                  </div>
+                  <div class="abstract-box">
+                      <div 
+  class="abstract-title">{content['abstract_b']['title']}</div>
+                      <div>{content['abstract_b']['text']}</div>
+                  </div>
+              </div>
+          </div>
+          """
+
+      def _create_likert_html(self, question: Dict, index: int) -> str:
+          """Create HTML for Likert scale questions."""
+          scale_html = []
+          for i in range(question["scale"]):
+              label = question["labels"][i] if i < len(question["labels"])
+  else str(i+1)
+              scale_html.append(f"""
+                  <div class="likert-option">
+                      <input type="radio" id="{question['id']}_{i+1}" 
+  name="{question['id']}" value="{i+1}" {'required' if 
+  question.get('required') else ''}>
+                      <label for="{question['id']}_{i+1}">{label}</label>
+                  </div>
+              """)
+
+          return f"""
+          <div class="question-block" data-question="{index}">
+              <div class="question-title">{question['question']}</div>
+              <div class="likert-scale">
+                  {''.join(scale_html)}
+              </div>
+          </div>
+          """
+
+      def _create_select_html(self, question: Dict, index: int) -> str:
+          """Create HTML for select questions."""
+          options_html = []
+          for option in question["options"]:
+              options_html.append(f'<option 
+  value="{option}">{option}</option>')
+
+          return f"""
+          <div class="question-block" data-question="{index}">
+              <div class="question-title">{question['question']}</div>
+              <select name="{question['id']}" {'required' if 
+  question.get('required') else ''}>
+                  <option value="">Please select...</option>
+                  {''.join(options_html)}
+              </select>
+          </div>
+          """
+
+      def _create_number_html(self, question: Dict, index: int) -> str:
+          """Create HTML for number input questions."""
+          return f"""
+          <div class="question-block" data-question="{index}">
+              <div class="question-title">{question['question']}</div>
+              <input type="number" name="{question['id']}" 
+                     min="{question.get('min_value', '')}" 
+                     max="{question.get('max_value', '')}"
+                     {'required' if question.get('required') else ''}>
+          </div>
+          """
+
+      def _create_textarea_html(self, question: Dict, index: int) -> str:
+          """Create HTML for textarea questions."""
+          return f"""
+          <div class="question-block" data-question="{index}">
+              <div class="question-title">{question['question']}</div>
+              <textarea name="{question['id']}" rows="4" cols="50" 
+                        placeholder="{question.get('placeholder', '')}"
+                        {'required' if question.get('required') else 
+  ''}></textarea>
+          </div>
+          """
+
+      def _generate_javascript_code(self, questions: List[Dict]) -> str:
+          """Generate JavaScript for survey functionality."""
+          # Generate abstract templates for client-side randomization
+          abstract_templates_js = self._generate_abstract_templates_js()
+
+          return f"""
+          // Abstract generation system for randomization
+          {abstract_templates_js}
+          
+          document.addEventListener('DOMContentLoaded', function() {{
+              const form = document.getElementById('surveyForm');
+              const progressFill = document.getElementById('progressFill');
+              const questionBlocks = 
+  document.querySelectorAll('.question-block');
+              
+              // Generate and display random abstracts
+              generateRandomAbstracts();
+              
+              // Update progress bar
+              function updateProgress() {{
+                  const inputs = form.querySelectorAll('input, select, 
+  textarea');
+                  const filled = Array.from(inputs).filter(input => {{
+                      if (input.type === 'radio') {{
+                          return 
+  form.querySelector(`input[name="${{input.name}}"]:checked`);
+                      }}
+                      return input.value.trim() !== '';
+                  }});
+                  
+                  const progress = (filled.length / inputs.length) * 100;
+                  progressFill.style.width = progress + '%';
+              }}
+              
+              // Add event listeners
+              form.addEventListener('change', updateProgress);
+              form.addEventListener('input', updateProgress);
+              
+              // Form submission
+              form.addEventListener('submit', function(e) {{
+                  e.preventDefault();
+                  
+                  const formData = new FormData(form);
+                  const data = {{}};
+                  
+                  for (let [key, value] of formData.entries()) {{
+                      data[key] = value;
+                  }}
+                  
+                  // Add timestamp and session info
+                  data.timestamp = new Date().toISOString();
+                  data.session_id = 'session_' + 
+  Math.random().toString(36).substr(2, 9);
+                  
+                  // Store which abstracts were shown for analysis
+                  data.abstracts_shown = getDisplayedAbstracts();
+                  
+                  // In a real deployment, this would send to your data 
+  collection endpoint
+                  console.log('Survey Data:', data);
+                  alert('Survey completed! Thank you for your 
+  participation.');
+                  
+                  // For Prolific integration, you would redirect to 
+  completion URL here
+                  // window.location.href = 
+  'https://app.prolific.co/submissions/complete?cc=COMPLETION_CODE';
+              }});
+              
+              // Initialize progress
+              updateProgress();
+          }});
+          """
+
+      def _generate_abstract_templates_js(self) -> str:
+          """Generate JavaScript code for client-side abstract 
+  randomization."""
+          # Get templates from the abstract generator
+          templates = self.abstract_generator.abstract_templates
+
+          js_templates = []
+          for template in templates:
+              js_template = f"""
+              {{
+                  topic: "{template.topic}",
+                  baseText: `{template.base_text}`,
+                  highDensityTerms: 
+  {json.dumps(template.high_density_terms)},
+                  lowDensityAlternatives: 
+  {json.dumps(template.low_density_alternatives)}
+              }}"""
+              js_templates.append(js_template)
+
+          return f"""
+          const abstractTemplates = [{','.join(js_templates)}];
+          
+          const causalTerms = 
+  {json.dumps(self.abstract_generator.causal_terms)};
+          const neutralAlternatives = 
+  {json.dumps(self.abstract_generator.neutral_alternatives)};
+          
+          function generateAbstractPair() {{
+              const template = abstractTemplates[Math.floor(Math.random() *
+   abstractTemplates.length)];
+              
+              // Generate high density version
+              let highDensityText = template.baseText;
+              const sentences = highDensityText.split('. ');
+              const enhancedSentences = [];
+              
+              for (let i = 0; i < sentences.length; i++) {{
+                  let sentence = sentences[i];
+                  if (i < template.highDensityTerms.length) {{
+                      const causalTerm = template.highDensityTerms[i];
+                      const words = sentence.split(' ');
+                      if (words.length > 5) {{
+                          const insertionPoint = Math.floor(words.length / 
+  2);
+                          words.splice(insertionPoint, 0, causalTerm);
+                          sentence = words.join(' ');
+                      }}
+                  }}
+                  enhancedSentences.push(sentence);
+              }}
+              
+              const highDensity = {{
+                  id: 'hd_' + template.topic.toLowerCase().replace(/ /g, 
+  '_') + '_' + Math.floor(Math.random() * 9999),
+                  text: enhancedSentences.join('. '),
+                  topic: template.topic,
+                  type: 'high_density'
+              }};
+              
+              // Generate low density version
+              let lowDensityText = template.baseText;
+              const lowSentences = lowDensityText.split('. ');
+              const lowEnhancedSentences = [];
+              
+              for (let i = 0; i < lowSentences.length; i++) {{
+                  let sentence = lowSentences[i];
+                  if (i < template.lowDensityAlternatives.length) {{
+                      const altTerm = template.lowDensityAlternatives[i];
+                      const words = sentence.split(' ');
+                      if (words.length > 5) {{
+                          const insertionPoint = Math.floor(words.length / 
+  2);
+                          words.splice(insertionPoint, 0, altTerm);
+                          sentence = words.join(' ');
+                      }}
+                  }}
+                  lowEnhancedSentences.push(sentence);
+              }}
+              
+              const lowDensity = {{
+                  id: 'ld_' + template.topic.toLowerCase().replace(/ /g, 
+  '_') + '_' + Math.floor(Math.random() * 9999),
+                  text: lowEnhancedSentences.join('. '),
+                  topic: template.topic,
+                  type: 'low_density'
+              }};
+              
+              return [highDensity, lowDensity];
+          }}
+          
+          let currentAbstracts = [];
+          
+          function generateRandomAbstracts() {{
+              const abstractDisplays = 
+  document.querySelectorAll('.abstract-display');
+              currentAbstracts = [];
+              
+              abstractDisplays.forEach((display, index) => {{
+                  const [highDensity, lowDensity] = generateAbstractPair();
+                  currentAbstracts.push({{high: highDensity, low: 
+  lowDensity}});
+                  
+                  // Randomly assign which is A and which is B
+                  const isHighDensityA = Math.random() > 0.5;
+                  const abstractA = isHighDensityA ? highDensity : 
+  lowDensity;
+                  const abstractB = isHighDensityA ? lowDensity : 
+  highDensity;
+                  
+                  const boxA = 
+  display.querySelector('.abstract-box:first-child div:last-child');
+                  const boxB = 
+  display.querySelector('.abstract-box:last-child div:last-child');
+                  
+                  if (boxA && boxB) {{
+                      boxA.textContent = abstractA.text;
+                      boxB.textContent = abstractB.text;
+                  }}
+              }});
+          }}
+          
+          function getDisplayedAbstracts() {{
+              return currentAbstracts;
+          }}
+          """
+
+      def save_survey_files(self, output_dir: str = '../survey/'):
+          """Generate and save survey files for deployment."""
+          Path(output_dir).mkdir(exist_ok=True)
+
+          # Generate questions
+          questions = self.generate_survey_questions()
+
+          # Save questions JSON for analysis
+          with open(f'{output_dir}survey_questions.json', 'w') as f:
+              json.dump(questions, f, indent=2)
+
+          # Generate and save HTML survey
+          html_survey = self.generate_html_survey(questions)
+          with open(f'{output_dir}index.html', 'w') as f:
+              f.write(html_survey)
+
+          # Create deployment instructions
+          deployment_instructions = """
+  # Survey Deployment Instructions
+
+  ## GitHub Pages Deployment
+  1. Create a new GitHub repository
+  2. Upload survey files to the repository
+  3. Enable GitHub Pages in repository settings
+  4. Use the GitHub Pages URL for Prolific
+
+  ## Prolific Integration
+  1. Set completion URL: 
+  https://app.prolific.co/submissions/complete?cc=YOUR_COMPLETION_CODE
+  2. Set survey URL: https://yourusername.github.io/repository-name/
+  3. Configure participant requirements:
+     - Age: 18+
+     - Language: English (native)
+     - Approval rate: 95%+
+
+  ## Data Collection
+  - Survey responses logged to browser console (development)
+  - For production, implement server endpoint for data storage
+  - Consider using services like Formspree, Google Forms API, or custom 
+  backend
+
+  ## Sample Size Calculation
+  - Target n > 300 participants as specified
+  - Power analysis for medium effect size (d = 0.5)
+  - Alpha = 0.05, Power = 0.80
+  """
+
+          with open(f'{output_dir}deployment_instructions.md', 'w') as f:
+              f.write(deployment_instructions)
+
+          print(f"Survey files generated in {output_dir}")
+          print("Files created:")
+          print("- index.html (main survey)")
+          print("- survey_questions.json (question structure)")
+          print("- deployment_instructions.md (setup guide)")
+
+  def main():
+      generator = SurveyGenerator()
+      generator.save_survey_files()
+
+  if __name__ == "__main__":
+      main()
 
 
 
