@@ -516,37 +516,38 @@
           </form>
       </div>
 
-      <script>
-          // Lista de diferentes abstracts
-          var abstractSets = [
-              {
-                  high: "This investigation sustains that consciousness underlies moral agency in complex decision-making processes. The research enables autonomous choice through mediating pathways that serve as the cornerstone of ethical reasoning frameworks. Statistical analysis reveals significant predictors
-   that translate into measurable behavioral outcomes across diverse populations.",
-                  low: "This investigation shows that consciousness relates to moral agency in complex decision-making processes. The research allows autonomous choice through pathways that act as important elements of ethical reasoning frameworks. Statistical analysis shows factors that lead to measurable 
+  <script>
+      // Lista de diferentes abstracts
+      var abstractSets = [
+          {
+              high: "This investigation sustains that consciousness underlies moral agency in complex decision-making processes. The research enables autonomous choice through mediating pathways that serve as the cornerstone of ethical reasoning frameworks. Statistical analysis reveals significant predictors 
+  that translate into measurable behavioral outcomes across diverse populations.",
+              low: "This investigation shows that consciousness relates to moral agency in complex decision-making processes. The research allows autonomous choice through pathways that act as important elements of ethical reasoning frameworks. Statistical analysis shows factors that lead to measurable 
   behavioral outcomes across diverse populations."
-              },
-              {
-                  high: "This study underlies that ethical reasoning facilitates moral judgment in artificial intelligence systems. The analysis constrains algorithmic bias through dialectical relationships that function as catalysts for technological change. Research explains variance in discriminatory outcomes
-   through mediating variables that enable fair decision-making processes.",
-                  low: "This study relates to ethical reasoning that supports moral judgment in artificial intelligence systems. The analysis reduces algorithmic bias through relationships that act as factors for technological change. Research shows variation in discriminatory outcomes through variables that 
-  support fair decision-making processes."
-              },
-              {
-                  high: "This research presupposes that intergenerational duty enables sustainable practices in contemporary environmental policy frameworks. The framework grounds environmental responsibility through dialectical tensions that serve as cornerstones of sustainability initiatives. Analysis reveals 
+          },
+          {
+              high: "This study underlies that ethical reasoning facilitates moral judgment in artificial intelligence systems. The analysis constrains algorithmic bias through dialectical relationships that function as catalysts for technological change. Research explains variance in discriminatory outcomes 
+  through mediating variables that enable fair decision-making processes.",
+              low: "This study relates to ethical reasoning that supports moral judgment in artificial intelligence systems. The analysis reduces algorithmic bias through relationships that act as factors for technological change. Research shows variation in discriminatory outcomes through variables that support
+   fair decision-making processes."
+          },
+          {
+              high: "This research presupposes that intergenerational duty enables sustainable practices in contemporary environmental policy frameworks. The framework grounds environmental responsibility through dialectical tensions that serve as cornerstones of sustainability initiatives. Analysis reveals 
   predictive indicators that give rise to measurable conservation behaviors in communities.",
-                  low: "This research involves intergenerational duty that supports sustainable practices in contemporary environmental policy frameworks. The framework provides basis for environmental responsibility through tensions that act as central elements of sustainability initiatives. Analysis shows 
+              low: "This research involves intergenerational duty that supports sustainable practices in contemporary environmental policy frameworks. The framework provides basis for environmental responsibility through tensions that act as central elements of sustainability initiatives. Analysis shows 
   indicators that result in measurable conservation behaviors in communities."
-              },
-              {
-                  high: "This study underlies that conscious experience facilitates mental representation in complex cognitive processing systems. The research constrains reductive explanations through reciprocal interactions that serve as foundational mechanisms for understanding consciousness. Analysis 
-  explains variance in subjective experience through conditional effects that enable phenomenological inquiry.",
-                  low: "This study relates to conscious experience that supports mental representation in complex cognitive processing systems. The research challenges reductive explanations through interactions that act as important mechanisms for understanding consciousness. Analysis shows variation in 
-  subjective experience through effects that support phenomenological inquiry."
-              }
-          ];
+          },
+          {
+              high: "This study underlies that conscious experience facilitates mental representation in complex cognitive processing systems. The research constrains reductive explanations through reciprocal interactions that serve as foundational mechanisms for understanding consciousness. Analysis explains 
+  variance in subjective experience through conditional effects that enable phenomenological inquiry.",
+              low: "This study relates to conscious experience that supports mental representation in complex cognitive processing systems. The research challenges reductive explanations through interactions that act as important mechanisms for understanding consciousness. Analysis shows variation in subjective 
+  experience through effects that support phenomenological inquiry."
+          }
+      ];
 
-          // Función para mostrar abstracts aleatorios
-          function showRandomAbstracts() {
+      // Función para mostrar abstracts aleatorios
+      function showRandomAbstracts() {
+          try {
               var randomIndex = Math.floor(Math.random() * abstractSets.length);
               var selectedSet = abstractSets[randomIndex];
               var highIsA = Math.random() > 0.5;
@@ -554,32 +555,69 @@
               var abstractA = document.getElementById('abstractA');
               var abstractB = document.getElementById('abstractB');
 
-              if (highIsA) {
-                  abstractA.textContent = selectedSet.high;
-                  abstractB.textContent = selectedSet.low;
-                  console.log('A = High density, B = Low density');
-              } else {
-                  abstractA.textContent = selectedSet.low;
-                  abstractB.textContent = selectedSet.high;
-                  console.log('A = Low density, B = High density');
+              if (abstractA && abstractB) {
+                  if (highIsA) {
+                      abstractA.textContent = selectedSet.high;
+                      abstractB.textContent = selectedSet.low;
+                      console.log('A = High density, B = Low density');
+                  } else {
+                      abstractA.textContent = selectedSet.low;
+                      abstractB.textContent = selectedSet.high;
+                      console.log('A = Low density, B = High density');
+                  }
               }
+          } catch (error) {
+              console.error('Error showing abstracts:', error);
           }
+      }
 
-          // Mostrar abstracts cuando la página cargue
-          if (document.readyState === 'loading') {
-              document.addEventListener('DOMContentLoaded', showRandomAbstracts);
+      // Ejecutar cuando la página esté lista
+      window.addEventListener('load', function() {
+          console.log('Page loaded');
+          showRandomAbstracts();
+
+          // Configurar el formulario
+          var form = document.getElementById('surveyForm');
+          if (form) {
+              form.addEventListener('submit', function(e) {
+                  e.preventDefault();
+                  console.log('Form submitted');
+
+                  // Recopilar datos del formulario
+                  var formData = new FormData(form);
+                  var data = {};
+                  for (var pair of formData.entries()) {
+                      data[pair[0]] = pair[1];
+                  }
+
+                  // Agregar metadatos
+                  data.timestamp = new Date().toISOString();
+                  data.session_id = 'session_' + Math.random().toString(36).substr(2, 9);
+
+                  // Mostrar los datos en consola (para pruebas)
+                  console.log('Survey Response:', data);
+
+                  // Mostrar mensaje de agradecimiento
+                  alert('Survey completed! Thank you for your participation. Your responses have been recorded.');
+
+                  // En producción aquí enviarías los datos al servidor
+                  // fetch('/submit-survey', { method: 'POST', body: JSON.stringify(data) })
+              });
           } else {
+              console.error('Form not found');
+          }
+      });
+
+      // Fallback por si el evento load no funciona
+      setTimeout(function() {
+          if (document.getElementById('abstractA').textContent === 'Loading abstract...') {
+              console.log('Fallback: showing abstracts');
               showRandomAbstracts();
           }
+      }, 1000);
+  </script>
 
-          // Manejar envío del formulario
-          document.addEventListener('DOMContentLoaded', function() {
-              document.getElementById('surveyForm').addEventListener('submit', function(e) {
-                  e.preventDefault();
-                  alert('Survey completed! Thank you for your participation.');
-              });
-          });
-      </script>
+
   </body>
   </html>
 
