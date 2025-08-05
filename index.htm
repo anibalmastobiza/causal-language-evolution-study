@@ -639,6 +639,8 @@
       <script>
           function handleSubmit(event) {
               event.preventDefault();
+            const urlParams = new URLSearchParams(window.location.search);
+
 
               // Collect form data
               var formData = new FormData(event.target);
@@ -648,6 +650,11 @@
                   data[pair[0]] = pair[1];
               }
 
+const urlParams = new URLSearchParams(window.location.search);
+data.prolific_pid = urlParams.get('PROLIFIC_PID');
+data.study_id = urlParams.get('STUDY_ID');
+data.session_id = urlParams.get('SESSION_ID');
+            
               // Add metadata
               data.timestamp = new Date().toISOString();
               data.session_id = 'session_' + Math.random().toString(36).substr(2, 9);
@@ -657,6 +664,10 @@
 
               // Show success message
               alert('Survey completed! Thank you for your participation. Your responses have been recorded.');
+
+            // La línea "alert('Survey completed!...')" puede ser eliminada o comentada.
+// Redirige al participante a la URL de finalización de Prolific.
+window.location.href = "https://app.prolific.com/submissions/complete?cc=AQUÍ_VA_TU_CÓDIGO";
 
               return false;
           }
