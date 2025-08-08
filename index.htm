@@ -1,679 +1,709 @@
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Causal Language in Philosophy Survey</title>
-      <style>
-          body {
-              font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-              max-width: 900px;
-              margin: 0 auto;
-              padding: 20px;
-              line-height: 1.6;
-              background-color: #f8f9fa;
-              color: #333;
-          }
-          .survey-container {
-              background-color: white;
-              padding: 40px;
-              border-radius: 12px;
-              box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-          }
-          .header {
-              text-align: center;
-              margin-bottom: 40px;
-              padding-bottom: 20px;
-              border-bottom: 2px solid #e9ecef;
-          }
-          .header h1 {
-              color: #2c3e50;
-              margin-bottom: 10px;
-              font-size: 28px;
-          }
-          .header p {
-              color: #6c757d;
-              font-size: 16px;
-              max-width: 600px;
-              margin: 0 auto;
-          }
-          .section-title {
-              font-size: 20px;
-              font-weight: bold;
-              color: #2c3e50;
-              margin: 30px 0 20px 0;
-              padding-bottom: 10px;
-              border-bottom: 1px solid #dee2e6;
-          }
-          .question-block {
-              margin-bottom: 25px;
-              padding: 20px;
-              border-left: 4px solid #007bff;
-              background-color: #f8f9fa;
-              border-radius: 8px;
-          }
-          .question-title {
-              font-weight: 600;
-              margin-bottom: 15px;
-              color: #2c3e50;
-              font-size: 16px;
-          }
-          .abstract-display {
-              display: flex;
-              gap: 25px;
-              margin: 25px 0;
-          }
-          .abstract-box {
-              flex: 1;
-              padding: 20px;
-              border: 2px solid #dee2e6;
-              border-radius: 8px;
-              background-color: white;
-              box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-          }
-          .abstract-title {
-              font-weight: bold;
-              margin-bottom: 15px;
-              color: #007bff;
-              font-size: 18px;
-              text-align: center;
-          }
-          .abstract-text {
-              line-height: 1.6;
-              font-size: 14px;
-              color: #495057;
-              text-align: justify;
-          }
-          .likert-scale {
-              display: flex;
-              justify-content: space-between;
-              margin: 15px 0;
-              gap: 5px;
-          }
-          .likert-option {
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-              flex: 1;
-              padding: 8px;
-              border-radius: 6px;
-              transition: background-color 0.2s;
-          }
-          .likert-option:hover {
-              background-color: #f8f9fa;
-          }
-          .likert-option input[type="radio"] {
-              margin-bottom: 8px;
-              transform: scale(1.2);
-          }
-          .likert-option label {
-              font-size: 11px;
-              text-align: center;
-              color: #6c757d;
-              cursor: pointer;
-              font-weight: 500;
-          }
-          select, input[type="number"] {
-              width: 100%;
-              padding: 12px;
-              margin: 8px 0;
-              border: 2px solid #dee2e6;
-              border-radius: 6px;
-              font-size: 14px;
-              transition: border-color 0.2s;
-          }
-          select:focus, input[type="number"]:focus {
-              outline: none;
-              border-color: #007bff;
-          }
-          .submit-btn {
-              background: linear-gradient(135deg, #007bff, #0056b3);
-              color: white;
-              padding: 15px 40px;
-              border: none;
-              border-radius: 8px;
-              font-size: 18px;
-              font-weight: 600;
-              cursor: pointer;
-              margin-top: 30px;
-              transition: transform 0.2s, box-shadow 0.2s;
-              display: block;
-              margin-left: auto;
-              margin-right: auto;
-          }
-          .submit-btn:hover {
-              transform: translateY(-2px);
-              box-shadow: 0 6px 20px rgba(0,123,255,0.3);
-          }
-          .required-indicator {
-              color: #dc3545;
-              font-weight: bold;
-          }
-          .demographics-grid {
-              display: grid;
-              grid-template-columns: 1fr 1fr;
-              gap: 20px;
-          }
-          .pair-separator {
-              margin: 40px 0;
-              border-top: 3px solid #dee2e6;
-              padding-top: 20px;
-          }
-          @media (max-width: 768px) {
-              .demographics-grid {
-                  grid-template-columns: 1fr;
-              }
-              .abstract-display {
-                  flex-direction: column;
-              }
-              .likert-scale {
-                  flex-wrap: wrap;
-              }
-          }
-      </style>
-  </head>
-  <body>
-      <div class="survey-container">
-          <div class="header">
-              <h1>Causal Language in Philosophical Writing Survey</h1>
-              <p>This survey examines how different types of language affect the clarity and comprehension of philosophical abstracts. The survey takes approximately 8-10 minutes to complete.</p>
-          </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Causal Language in Philosophy Survey</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .survey-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e9ecef;
+        }
+        .header h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        .header p {
+            color: #6c757d;
+            font-size: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin: 30px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .question-block {
+            margin-bottom: 25px;
+            padding: 20px;
+            border-left: 4px solid #007bff;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+        .question-title {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            font-size: 16px;
+        }
+        .abstract-display {
+            display: flex;
+            gap: 25px;
+            margin: 25px 0;
+        }
+        .abstract-box {
+            flex: 1;
+            padding: 20px;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            background-color: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .abstract-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #007bff;
+            font-size: 18px;
+            text-align: center;
+        }
+        .abstract-text {
+            line-height: 1.6;
+            font-size: 14px;
+            color: #495057;
+            text-align: justify;
+        }
+        .likert-scale {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0;
+            gap: 5px;
+        }
+        .likert-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            padding: 8px;
+            border-radius: 6px;
+            transition: background-color 0.2s;
+        }
+        .likert-option:hover {
+            background-color: #f8f9fa;
+        }
+        .likert-option input[type="radio"] {
+            margin-bottom: 8px;
+            transform: scale(1.2);
+        }
+        .likert-option label {
+            font-size: 11px;
+            text-align: center;
+            color: #6c757d;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        select, input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 2px solid #dee2e6;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.2s;
+        }
+        select:focus, input[type="number"]:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+        .submit-btn {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,123,255,0.3);
+        }
+        .required-indicator {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        .demographics-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .pair-separator {
+            margin: 40px 0;
+            border-top: 3px solid #dee2e6;
+            padding-top: 20px;
+        }
+        /* Estilo para el mensaje de finalización */
+        .hidden {
+            display: none;
+        }
+        .completion-message {
+            text-align: center;
+        }
+        .completion-message h1 {
+            color: #28a745; /* verde */
+            font-size: 2em;
+            font-weight: bold;
+        }
+        @media (max-width: 768px) {
+            .demographics-grid {
+                grid-template-columns: 1fr;
+            }
+            .abstract-display {
+                flex-direction: column;
+            }
+            .likert-scale {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="main-container">
+        <div id="survey-container" class="survey-container">
+            <div class="header">
+                <h1>Causal Language in Philosophical Writing Survey</h1>
+                <p>This survey examines how different types of language affect the clarity and comprehension of philosophical abstracts. The survey takes approximately 8-10 minutes to complete.</p>
+            </div>
 
-          <form id="surveyForm" onsubmit="handleSubmit(event)">
-              <!-- Demographics Section -->
-              <div class="section-title">📋 About You</div>
+            <form id="surveyForm">
+                <!-- Demographics Section -->
+                <div class="section-title">📋 About You</div>
 
-              <div class="demographics-grid">
-                  <div class="question-block">
-                      <div class="question-title">Age <span class="required-indicator">*</span></div>
-                      <input type="number" name="demo_age" min="18" max="100" required>
-                  </div>
+                <div class="demographics-grid">
+                    <div class="question-block">
+                        <div class="question-title">Age <span class="required-indicator">*</span></div>
+                        <input type="number" name="demo_age" min="18" max="100" required>
+                    </div>
 
-                  <div class="question-block">
-                      <div class="question-title">Gender <span class="required-indicator">*</span></div>
-                      <select name="demo_gender" required>
-                          <option value="">Select...</option>
-                          <option value="Female">Female</option>
-                          <option value="Male">Male</option>
-                          <option value="Non-binary">Non-binary</option>
-                          <option value="Other">Other</option>
-                          <option value="Prefer not to say">Prefer not to say</option>
-                      </select>
-                  </div>
-              </div>
+                    <div class="question-block">
+                        <div class="question-title">Gender <span class="required-indicator">*</span></div>
+                        <select name="demo_gender" required>
+                            <option value="">Select...</option>
+                            <option value="Female">Female</option>
+                            <option value="Male">Male</option>
+                            <option value="Non-binary">Non-binary</option>
+                            <option value="Other">Other</option>
+                            <option value="Prefer not to say">Prefer not to say</option>
+                        </select>
+                    </div>
+                </div>
 
-              <div class="question-block">
-                  <div class="question-title">Education level <span class="required-indicator">*</span></div>
-                  <select name="demo_education" required>
-                      <option value="">Select...</option>
-                      <option value="High school">High school or equivalent</option>
-                      <option value="Some college">Some college</option>
-                      <option value="Bachelor's">Bachelor's degree</option>
-                      <option value="Master's">Master's degree</option>
-                      <option value="Doctoral">Doctoral degree</option>
-                      <option value="Other">Other</option>
-                  </select>
-              </div>
+                <div class="question-block">
+                    <div class="question-title">Education level <span class="required-indicator">*</span></div>
+                    <select name="demo_education" required>
+                        <option value="">Select...</option>
+                        <option value="High school">High school or equivalent</option>
+                        <option value="Some college">Some college</option>
+                        <option value="Bachelor's">Bachelor's degree</option>
+                        <option value="Master's">Master's degree</option>
+                        <option value="Doctoral">Doctoral degree</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
 
-              <div class="question-block">
-                  <div class="question-title">How familiar are you with academic philosophy? <span class="required-indicator">*</span></div>
-                  <div class="likert-scale">
-                      <div class="likert-option">
-                          <input type="radio" id="familiarity_1" name="demo_philosophy_familiarity" value="1" required>
-                          <label for="familiarity_1">Not familiar</label>
-                      </div>
-                      <div class="likert-option">
-                          <input type="radio" id="familiarity_2" name="demo_philosophy_familiarity" value="2">
-                          <label for="familiarity_2">Slightly familiar</label>
-                      </div>
-                      <div class="likert-option">
-                          <input type="radio" id="familiarity_3" name="demo_philosophy_familiarity" value="3">
-                          <label for="familiarity_3">Moderately familiar</label>
-                      </div>
-                      <div class="likert-option">
-                          <input type="radio" id="familiarity_4" name="demo_philosophy_familiarity" value="4">
-                          <label for="familiarity_4">Very familiar</label>
-                      </div>
-                      <div class="likert-option">
-                          <input type="radio" id="familiarity_5" name="demo_philosophy_familiarity" value="5">
-                          <label for="familiarity_5">Extremely familiar</label>
-                      </div>
-                  </div>
-              </div>
+                <div class="question-block">
+                    <div class="question-title">How familiar are you with academic philosophy? <span class="required-indicator">*</span></div>
+                    <div class="likert-scale">
+                        <div class="likert-option">
+                            <input type="radio" id="familiarity_1" name="demo_philosophy_familiarity" value="1" required>
+                            <label for="familiarity_1">Not familiar</label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" id="familiarity_2" name="demo_philosophy_familiarity" value="2">
+                            <label for="familiarity_2">Slightly familiar</label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" id="familiarity_3" name="demo_philosophy_familiarity" value="3">
+                            <label for="familiarity_3">Moderately familiar</label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" id="familiarity_4" name="demo_philosophy_familiarity" value="4">
+                            <label for="familiarity_4">Very familiar</label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" id="familiarity_5" name="demo_philosophy_familiarity" value="5">
+                            <label for="familiarity_5">Extremely familiar</label>
+                        </div>
+                    </div>
+                </div>
 
-              <!-- Abstract Evaluations -->
-              <div class="section-title">📄 Abstract Evaluation</div>
-              <p style="color: #6c757d; margin-bottom: 25px;">Please read each pair of abstracts carefully and answer the questions about them.</p>
+                <!-- Abstract Evaluations -->
+                <div class="section-title">📄 Abstract Evaluation</div>
+                <p style="color: #6c757d; margin-bottom: 25px;">Please read each pair of abstracts carefully and answer the questions about them.</p>
 
-              <!-- Pair 1 -->
-              <div class="question-block">
-                  <h3 style="color: #007bff; margin-bottom: 20px;">Pair 1</h3>
-                  <div class="abstract-display">
-                      <div class="abstract-box">
-                          <div class="abstract-title">Abstract A</div>
-                          <div class="abstract-text">This investigation sustains that consciousness underlies moral agency in decision-making processes. The research enables autonomous choice through mediating pathways that serve as the cornerstone of ethical reasoning frameworks. Statistical analysis reveals
+                <!-- Pair 1 -->
+                <div class="question-block">
+                    <h3 style="color: #007bff; margin-bottom: 20px;">Pair 1</h3>
+                    <div class="abstract-display">
+                        <div class="abstract-box">
+                            <div class="abstract-title">Abstract A</div>
+                            <div class="abstract-text">This investigation sustains that consciousness underlies moral agency in decision-making processes. The research enables autonomous choice through mediating pathways that serve as the cornerstone of ethical reasoning frameworks. Statistical analysis reveals
   significant predictors that translate into measurable behavioral outcomes across diverse populations.</div>
-                      </div>
-                      <div class="abstract-box">
-                          <div class="abstract-title">Abstract B</div>
-                          <div class="abstract-text">This investigation shows that consciousness relates to moral agency in decision-making processes. The research allows autonomous choice through pathways that act as important elements of ethical reasoning frameworks. Statistical analysis shows factors that
+                        </div>
+                        <div class="abstract-box">
+                            <div class="abstract-title">Abstract B</div>
+                            <div class="abstract-text">This investigation shows that consciousness relates to moral agency in decision-making processes. The research allows autonomous choice through pathways that act as important elements of ethical reasoning frameworks. Statistical analysis shows factors that
   lead to measurable behavioral outcomes across diverse populations.</div>
-                      </div>
-                  </div>
-              </div>
+                        </div>
+                    </div>
+                </div>
 
-              <div class="question-block">
-                  <div class="question-title">How clear is Abstract A? <span class="required-indicator">*</span></div>
-                  <div class="likert-scale">
-                      <div class="likert-option">
-                          <input type="radio" id="pair1_clarity_a_1" name="pair1_clarity_a" value="1" required>
-                          <label for="pair1_clarity_a_1">Very unclear</label>
-                      </div>
-                      <div class="likert-option">
-                          <input type="radio" id="pair1_clarity_a_2" name="pair1_clarity_a" value="2">
-                          <label for="pair1_clarity_a_2">Unclear</label>
-                      </div>
-                      <div class="likert-option">
-                          <input type="radio" id="pair1_clarity_a_3" name="pair1_clarity_a" value="3">
-                          <label for="pair1_clarity_a_3">Neutral</label>
-                      </div>
-                      <div class="likert-option">
-                          <input type="radio" id="pair1_clarity_a_4" name="pair1_clarity_a" value="4">
-                          <label for="pair1_clarity_a_4">Clear</label>
-                      </div>
-                      <div class="likert-option">
-                          <input type="radio" id="pair1_clarity_a_5" name="pair1_clarity_a" value="5">
-                          <label for="pair1_clarity_a_5">Very clear</label>
-                      </div>
-                  </div>
-              </div>
+                <div class="question-block">
+                    <div class="question-title">How clear is Abstract A? <span class="required-indicator">*</span></div>
+                    <div class="likert-scale">
+                        <div class="likert-option">
+                            <input type="radio" id="pair1_clarity_a_1" name="pair1_clarity_a" value="1" required>
+                            <label for="pair1_clarity_a_1">Very unclear</label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" id="pair1_clarity_a_2" name="pair1_clarity_a" value="2">
+                            <label for="pair1_clarity_a_2">Unclear</label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" id="pair1_clarity_a_3" name="pair1_clarity_a" value="3">
+                            <label for="pair1_clarity_a_3">Neutral</label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" id="pair1_clarity_a_4" name="pair1_clarity_a" value="4">
+                            <label for="pair1_clarity_a_4">Clear</label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" id="pair1_clarity_a_5" name="pair1_clarity_a" value="5">
+                            <label for="pair1_clarity_a_5">Very clear</label>
+                        </div>
+                    </div>
+                </div>
 
-              <div class="question-block">
-                  <div class="question-title">How clear is Abstract B? <span class="required-indicator">*</span></div>
-                  <div class="likert-scale">
-                      <div class="likert-option">
-                          <input type="radio" id="pair1_clarity_b_1" name="pair1_clarity_b" value="1" required>
-                          <label for="pair1_clarity_b_1">Very unclear</label>
-                      </div>
-                      <div class="likert-option">
-                          <input type="radio" id="pair1_clarity_b_2" name="pair1_clarity_b" value="2">
-                          <label for="pair1_clarity_b_2">Unclear</label>
-                      </div>
-                      <div class="likert-option">
-                          <input type="radio" id="pair1_clarity_b_3" name="pair1_clarity_b" value="3">
-                          <label for="pair1_clarity_b_3">Neutral</label>
-                      </div>
-                      <div class="likert-option">
-                          <input type="radio" id="pair1_clarity_b_4" name="pair1_clarity_b" value="4">
-                          <label for="pair1_clarity_b_4">Clear</label>
-                      </div>
-                      <div class="likert-option">
-                          <input type="radio" id="pair1_clarity_b_5" name="pair1_clarity_b" value="5">
-                          <label for="pair1_clarity_b_5">Very clear</label>
-                      </div>
-                  </div>
-              </div>
+                <div class="question-block">
+                    <div class="question-title">How clear is Abstract B? <span class="required-indicator">*</span></div>
+                    <div class="likert-scale">
+                        <div class="likert-option">
+                            <input type="radio" id="pair1_clarity_b_1" name="pair1_clarity_b" value="1" required>
+                            <label for="pair1_clarity_b_1">Very unclear</label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" id="pair1_clarity_b_2" name="pair1_clarity_b" value="2">
+                            <label for="pair1_clarity_b_2">Unclear</label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" id="pair1_clarity_b_3" name="pair1_clarity_b" value="3">
+                            <label for="pair1_clarity_b_3">Neutral</label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" id="pair1_clarity_b_4" name="pair1_clarity_b" value="4">
+                            <label for="pair1_clarity_b_4">Clear</label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" id="pair1_clarity_b_5" name="pair1_clarity_b" value="5">
+                            <label for="pair1_clarity_b_5">Very clear</label>
+                        </div>
+                    </div>
+                </div>
 
-              <div class="question-block">
-                  <div class="question-title">How convincing are the causal relationships described in Abstract A? <span class="required-indicator">*</span></div>
-                  <div class="likert-scale">
-                      <div class="likert-option">
-                          <input type="radio" id="pair1_causal_a_1" name="pair1_causal_a" value="1" required>
-                          <label for="pair1_causal_a_1">Not convincing</label>
-                      </div>
-                      <div class="likert-option">
-                          <input type="radio" id="pair1_causal_a_2" name="pair1_causal_a" value="2">
-                          <label for="pair1_causal_a_2">Slightly convincing</label>
-                      </div>
-                      <div class="likert-option">
-                          <input type="radio" id="pair1_causal_a_3" name="pair1_causal_a" value="3">
-                          <label for="pair1_causal_a_3">Moderately convincing</label>
-                      </div>
-                      <div class="likert-option">
-                          <input type="radio" id="pair1_causal_a_4" name="pair1_causal_a" value="4">
-                          <label for="pair1_causal_a_4">Very convincing</label>
-                      </div>
-                      <div class="likert-option">
-                          <input type="radio" id="pair1_causal_a_5" name="pair1_causal_a" value="5">
-                          <label for="pair1_causal_a_5">Extremely convincing</label>
-                      </div>
-                  </div>
-              </div>
+                <div class="question-block">
+                    <div class="question-title">How convincing are the causal relationships described in Abstract A? <span class="required-indicator">*</span></div>
+                    <div class="likert-scale">
+                        <div class="likert-option">
+                            <input type="radio" id="pair1_causal_a_1" name="pair1_causal_a" value="1" required>
+                            <label for="pair1_causal_a_1">Not convincing</label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" id="pair1_causal_a_2" name="pair1_causal_a" value="2">
+                            <label for="pair1_causal_a_2">Slightly convincing</label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" id="pair1_causal_a_3" name="pair1_causal_a" value="3">
+                            <label for="pair1_causal_a_3">Moderately convincing</label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" id="pair1_causal_a_4" name="pair1_causal_a" value="4">
+                            <label for="pair1_causal_a_4">Very convincing</label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" id="pair1_causal_a_5" name="pair1_causal_a" value="5">
+                            <label for="pair1_causal_a_5">Extremely convincing</label>
+                        </div>
+                    </div>
+                </div>
 
-              <div class="question-block">
-                  <div class="question-title">How convincing are the causal relationships described in Abstract B? <span class="required-indicator">*</span></div>
-                  <div class="likert-scale">
-                      <div class="likert-option">
-                          <input type="radio" id="pair1_causal_b_1" name="pair1_causal_b" value="1" required>
-                          <label for="pair1_causal_b_1">Not convincing</label>
-                      </div>
-                      <div class="likert-option">
-                          <input type="radio" id="pair1_causal_b_2" name="pair1_causal_b" value="2">
-                          <label for="pair1_causal_b_2">Slightly convincing</label>
-                      </div>
-                      <div class="likert-option">
-                          <input type="radio" id="pair1_causal_b_3" name="pair1_causal_b" value="3">
-                          <label for="pair1_causal_b_3">Moderately convincing</label>
-                      </div>
-                      <div class="likert-option">
-                          <input type="radio" id="pair1_causal_b_4" name="pair1_causal_b" value="4">
-                          <label for="pair1_causal_b_4">Very convincing</label>
-                      </div>
-                      <div class="likert-option">
-                          <input type="radio" id="pair1_causal_b_5" name="pair1_causal_b" value="5">
-                          <label for="pair1_causal_b_5">Extremely convincing</label>
-                      </div>
-                  </div>
-              </div>
+                <div class="question-block">
+                    <div class="question-title">How convincing are the causal relationships described in Abstract B? <span class="required-indicator">*</span></div>
+                    <div class="likert-scale">
+                        <div class="likert-option">
+                            <input type="radio" id="pair1_causal_b_1" name="pair1_causal_b" value="1" required>
+                            <label for="pair1_causal_b_1">Not convincing</label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" id="pair1_causal_b_2" name="pair1_causal_b" value="2">
+                            <label for="pair1_causal_b_2">Slightly convincing</label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" id="pair1_causal_b_3" name="pair1_causal_b" value="3">
+                            <label for="pair1_causal_b_3">Moderately convincing</label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" id="pair1_causal_b_4" name="pair1_causal_b" value="4">
+                            <label for="pair1_causal_b_4">Very convincing</label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" id="pair1_causal_b_5" name="pair1_causal_b" value="5">
+                            <label for="pair1_causal_b_5">Extremely convincing</label>
+                        </div>
+                    </div>
+                </div>
 
-              <div class="question-block">
-                  <div class="question-title">How confident do you feel about the research claims in Abstract A? <span class="required-indicator">*</span></div>
-                  <div class="likert-scale">
-                      <div class="likert-option">
-                          <input type="radio" id="pair1_confidence_a_1" name="pair1_confidence_a" value="1" required>
-                          <label for="pair1_confidence_a_1">Not confident</label>
-                      </div>
-                      <div class="likert-option">
-                          <input type="radio" id="pair1_confidence_a_2" name="pair1_confidence_a" value="2">
-                          <label for="pair1_confidence_a_2">Slightly confident</label>
-                      </div>
-                      <div class="likert-option">
-                          <input type="radio" id="pair1_confidence_a_3" name="pair1_confidence_a" value="3">
-                          <label for="pair1_confidence_a_3">Moderately confident</label>
-                      </div>
-                      <div class="likert-option">
-                          <input type="radio" id="pair1_confidence_a_4" name="pair1_confidence_a" value="4">
-                          <label for="pair1_confidence_a_4">Very confident</label>
-                      </div>
-                      <div class="likert-option">
-                          <input type="radio" id="pair1_confidence_a_5" name="pair1_confidence_a" value="5">
-                          <label for="pair1_confidence_a_5">Extremely confident</label>
-                      </div>
-                  </div>
-              </div>
+                <div class="question-block">
+                    <div class="question-title">How confident do you feel about the research claims in Abstract A? <span class="required-indicator">*</span></div>
+                    <div class="likert-scale">
+                        <div class="likert-option">
+                            <input type="radio" id="pair1_confidence_a_1" name="pair1_confidence_a" value="1" required>
+                            <label for="pair1_confidence_a_1">Not confident</label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" id="pair1_confidence_a_2" name="pair1_confidence_a" value="2">
+                            <label for="pair1_confidence_a_2">Slightly confident</label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" id="pair1_confidence_a_3" name="pair1_confidence_a" value="3">
+                            <label for="pair1_confidence_a_3">Moderately confident</label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" id="pair1_confidence_a_4" name="pair1_confidence_a" value="4">
+                            <label for="pair1_confidence_a_4">Very confident</label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" id="pair1_confidence_a_5" name="pair1_confidence_a" value="5">
+                            <label for="pair1_confidence_a_5">Extremely confident</label>
+                        </div>
+                    </div>
+                </div>
 
-              <div class="question-block">
-                  <div class="question-title">How confident do you feel about the research claims in Abstract B? <span class="required-indicator">*</span></div>
-                  <div class="likert-scale">
-                      <div class="likert-option">
-                          <input type="radio" id="pair1_confidence_b_1" name="pair1_confidence_b" value="1" required>
-                          <label for="pair1_confidence_b_1">Not confident</label>
-                      </div>
-                      <div class="likert-option">
-                          <input type="radio" id="pair1_confidence_b_2" name="pair1_confidence_b" value="2">
-                          <label for="pair1_confidence_b_2">Slightly confident</label>
-                      </div>
-                      <div class="likert-option">
-                          <input type="radio" id="pair1_confidence_b_3" name="pair1_confidence_b" value="3">
-                          <label for="pair1_confidence_b_3">Moderately confident</label>
-                      </div>
-                      <div class="likert-option">
-                          <input type="radio" id="pair1_confidence_b_4" name="pair1_confidence_b" value="4">
-                          <label for="pair1_confidence_b_4">Very confident</label>
-                      </div>
-                      <div class="likert-option">
-                          <input type="radio" id="pair1_confidence_b_5" name="pair1_confidence_b" value="5">
-                          <label for="pair1_confidence_b_5">Extremely confident</label>
-                      </div>
-                  </div>
-              </div>
+                <div class="question-block">
+                    <div class="question-title">How confident do you feel about the research claims in Abstract B? <span class="required-indicator">*</span></div>
+                    <div class="likert-scale">
+                        <div class="likert-option">
+                            <input type="radio" id="pair1_confidence_b_1" name="pair1_confidence_b" value="1" required>
+                            <label for="pair1_confidence_b_1">Not confident</label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" id="pair1_confidence_b_2" name="pair1_confidence_b" value="2">
+                            <label for="pair1_confidence_b_2">Slightly confident</label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" id="pair1_confidence_b_3" name="pair1_confidence_b" value="3">
+                            <label for="pair1_confidence_b_3">Moderately confident</label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" id="pair1_confidence_b_4" name="pair1_confidence_b" value="4">
+                            <label for="pair1_confidence_b_4">Very confident</label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" id="pair1_confidence_b_5" name="pair1_confidence_b" value="5">
+                            <label for="pair1_confidence_b_5">Extremely confident</label>
+                        </div>
+                    </div>
+                </div>
 
-              <!-- Pair 2 -->
-              <div class="pair-separator">
-                  <div class="question-block">
-                      <h3 style="color: #007bff; margin-bottom: 20px;">Pair 2</h3>
-                      <div class="abstract-display">
-                          <div class="abstract-box">
-                              <div class="abstract-title">Abstract A</div>
-                              <div class="abstract-text">This study underlies that ethical reasoning facilitates moral judgment in artificial intelligence systems. The analysis constrains algorithmic bias through dialectical relationships that function as catalysts for technological change. Research explains
+                <!-- Pair 2 -->
+                <div class="pair-separator">
+                    <div class="question-block">
+                        <h3 style="color: #007bff; margin-bottom: 20px;">Pair 2</h3>
+                        <div class="abstract-display">
+                            <div class="abstract-box">
+                                <div class="abstract-title">Abstract A</div>
+                                <div class="abstract-text">This study underlies that ethical reasoning facilitates moral judgment in artificial intelligence systems. The analysis constrains algorithmic bias through dialectical relationships that function as catalysts for technological change. Research explains
   variance in discriminatory outcomes through mediating variables that enable fair decision-making processes.</div>
-                          </div>
-                          <div class="abstract-box">
-                              <div class="abstract-title">Abstract B</div>
-                              <div class="abstract-text">This study relates to ethical reasoning that supports moral judgment in artificial intelligence systems. The analysis reduces algorithmic bias through relationships that act as factors for technological change. Research shows variation in discriminatory
+                            </div>
+                            <div class="abstract-box">
+                                <div class="abstract-title">Abstract B</div>
+                                <div class="abstract-text">This study relates to ethical reasoning that supports moral judgment in artificial intelligence systems. The analysis reduces algorithmic bias through relationships that act as factors for technological change. Research shows variation in discriminatory
   outcomes through variables that support fair decision-making processes.</div>
-                          </div>
-                      </div>
-                  </div>
+                            </div>
+                        </div>
+                    </div>
 
-                  <div class="question-block">
-                      <div class="question-title">How clear is Abstract A? <span class="required-indicator">*</span></div>
-                      <div class="likert-scale">
-                          <div class="likert-option">
-                              <input type="radio" id="pair2_clarity_a_1" name="pair2_clarity_a" value="1" required>
-                              <label for="pair2_clarity_a_1">Very unclear</label>
-                          </div>
-                          <div class="likert-option">
-                              <input type="radio" id="pair2_clarity_a_2" name="pair2_clarity_a" value="2">
-                              <label for="pair2_clarity_a_2">Unclear</label>
-                          </div>
-                          <div class="likert-option">
-                              <input type="radio" id="pair2_clarity_a_3" name="pair2_clarity_a" value="3">
-                              <label for="pair2_clarity_a_3">Neutral</label>
-                          </div>
-                          <div class="likert-option">
-                              <input type="radio" id="pair2_clarity_a_4" name="pair2_clarity_a" value="4">
-                              <label for="pair2_clarity_a_4">Clear</label>
-                          </div>
-                          <div class="likert-option">
-                              <input type="radio" id="pair2_clarity_a_5" name="pair2_clarity_a" value="5">
-                              <label for="pair2_clarity_a_5">Very clear</label>
-                          </div>
-                      </div>
-                  </div>
+                    <div class="question-block">
+                        <div class="question-title">How clear is Abstract A? <span class="required-indicator">*</span></div>
+                        <div class="likert-scale">
+                            <div class="likert-option">
+                                <input type="radio" id="pair2_clarity_a_1" name="pair2_clarity_a" value="1" required>
+                                <label for="pair2_clarity_a_1">Very unclear</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="pair2_clarity_a_2" name="pair2_clarity_a" value="2">
+                                <label for="pair2_clarity_a_2">Unclear</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="pair2_clarity_a_3" name="pair2_clarity_a" value="3">
+                                <label for="pair2_clarity_a_3">Neutral</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="pair2_clarity_a_4" name="pair2_clarity_a" value="4">
+                                <label for="pair2_clarity_a_4">Clear</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="pair2_clarity_a_5" name="pair2_clarity_a" value="5">
+                                <label for="pair2_clarity_a_5">Very clear</label>
+                            </div>
+                        </div>
+                    </div>
 
-                  <div class="question-block">
-                      <div class="question-title">How clear is Abstract B? <span class="required-indicator">*</span></div>
-                      <div class="likert-scale">
-                          <div class="likert-option">
-                              <input type="radio" id="pair2_clarity_b_1" name="pair2_clarity_b" value="1" required>
-                              <label for="pair2_clarity_b_1">Very unclear</label>
-                          </div>
-                          <div class="likert-option">
-                              <input type="radio" id="pair2_clarity_b_2" name="pair2_clarity_b" value="2">
-                              <label for="pair2_clarity_b_2">Unclear</label>
-                          </div>
-                          <div class="likert-option">
-                              <input type="radio" id="pair2_clarity_b_3" name="pair2_clarity_b" value="3">
-                              <label for="pair2_clarity_b_3">Neutral</label>
-                          </div>
-                          <div class="likert-option">
-                              <input type="radio" id="pair2_clarity_b_4" name="pair2_clarity_b" value="4">
-                              <label for="pair2_clarity_b_4">Clear</label>
-                          </div>
-                          <div class="likert-option">
-                              <input type="radio" id="pair2_clarity_b_5" name="pair2_clarity_b" value="5">
-                              <label for="pair2_clarity_b_5">Very clear</label>
-                          </div>
-                      </div>
-                  </div>
+                    <div class="question-block">
+                        <div class="question-title">How clear is Abstract B? <span class="required-indicator">*</span></div>
+                        <div class="likert-scale">
+                            <div class="likert-option">
+                                <input type="radio" id="pair2_clarity_b_1" name="pair2_clarity_b" value="1" required>
+                                <label for="pair2_clarity_b_1">Very unclear</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="pair2_clarity_b_2" name="pair2_clarity_b" value="2">
+                                <label for="pair2_clarity_b_2">Unclear</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="pair2_clarity_b_3" name="pair2_clarity_b" value="3">
+                                <label for="pair2_clarity_b_3">Neutral</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="pair2_clarity_b_4" name="pair2_clarity_b" value="4">
+                                <label for="pair2_clarity_b_4">Clear</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="pair2_clarity_b_5" name="pair2_clarity_b" value="5">
+                                <label for="pair2_clarity_b_5">Very clear</label>
+                            </div>
+                        </div>
+                    </div>
 
-                  <div class="question-block">
-                      <div class="question-title">How convincing are the causal relationships described in Abstract A? <span class="required-indicator">*</span></div>
-                      <div class="likert-scale">
-                          <div class="likert-option">
-                              <input type="radio" id="pair2_causal_a_1" name="pair2_causal_a" value="1" required>
-                              <label for="pair2_causal_a_1">Not convincing</label>
-                          </div>
-                          <div class="likert-option">
-                              <input type="radio" id="pair2_causal_a_2" name="pair2_causal_a" value="2">
-                              <label for="pair2_causal_a_2">Slightly convincing</label>
-                          </div>
-                          <div class="likert-option">
-                              <input type="radio" id="pair2_causal_a_3" name="pair2_causal_a" value="3">
-                              <label for="pair2_causal_a_3">Moderately convincing</label>
-                          </div>
-                          <div class="likert-option">
-                              <input type="radio" id="pair2_causal_a_4" name="pair2_causal_a" value="4">
-                              <label for="pair2_causal_a_4">Very convincing</label>
-                          </div>
-                          <div class="likert-option">
-                              <input type="radio" id="pair2_causal_a_5" name="pair2_causal_a" value="5">
-                              <label for="pair2_causal_a_5">Extremely convincing</label>
-                          </div>
-                      </div>
-                  </div>
+                    <div class="question-block">
+                        <div class="question-title">How convincing are the causal relationships described in Abstract A? <span class="required-indicator">*</span></div>
+                        <div class="likert-scale">
+                            <div class="likert-option">
+                                <input type="radio" id="pair2_causal_a_1" name="pair2_causal_a" value="1" required>
+                                <label for="pair2_causal_a_1">Not convincing</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="pair2_causal_a_2" name="pair2_causal_a" value="2">
+                                <label for="pair2_causal_a_2">Slightly convincing</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="pair2_causal_a_3" name="pair2_causal_a" value="3">
+                                <label for="pair2_causal_a_3">Moderately convincing</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="pair2_causal_a_4" name="pair2_causal_a" value="4">
+                                <label for="pair2_causal_a_4">Very convincing</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="pair2_causal_a_5" name="pair2_causal_a" value="5">
+                                <label for="pair2_causal_a_5">Extremely convincing</label>
+                            </div>
+                        </div>
+                    </div>
 
-                  <div class="question-block">
-                      <div class="question-title">How convincing are the causal relationships described in Abstract B? <span class="required-indicator">*</span></div>
-                      <div class="likert-scale">
-                          <div class="likert-option">
-                              <input type="radio" id="pair2_causal_b_1" name="pair2_causal_b" value="1" required>
-                              <label for="pair2_causal_b_1">Not convincing</label>
-                          </div>
-                          <div class="likert-option">
-                              <input type="radio" id="pair2_causal_b_2" name="pair2_causal_b" value="2">
-                              <label for="pair2_causal_b_2">Slightly convincing</label>
-                          </div>
-                          <div class="likert-option">
-                              <input type="radio" id="pair2_causal_b_3" name="pair2_causal_b" value="3">
-                              <label for="pair2_causal_b_3">Moderately convincing</label>
-                          </div>
-                          <div class="likert-option">
-                              <input type="radio" id="pair2_causal_b_4" name="pair2_causal_b" value="4">
-                              <label for="pair2_causal_b_4">Very convincing</label>
-                          </div>
-                          <div class="likert-option">
-                              <input type="radio" id="pair2_causal_b_5" name="pair2_causal_b" value="5">
-                              <label for="pair2_causal_b_5">Extremely convincing</label>
-                          </div>
-                      </div>
-                  </div>
+                    <div class="question-block">
+                        <div class="question-title">How convincing are the causal relationships described in Abstract B? <span class="required-indicator">*</span></div>
+                        <div class="likert-scale">
+                            <div class="likert-option">
+                                <input type="radio" id="pair2_causal_b_1" name="pair2_causal_b" value="1" required>
+                                <label for="pair2_causal_b_1">Not convincing</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="pair2_causal_b_2" name="pair2_causal_b" value="2">
+                                <label for="pair2_causal_b_2">Slightly convincing</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="pair2_causal_b_3" name="pair2_causal_b" value="3">
+                                <label for="pair2_causal_b_3">Moderately convincing</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="pair2_causal_b_4" name="pair2_causal_b" value="4">
+                                <label for="pair2_causal_b_4">Very convincing</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="pair2_causal_b_5" name="pair2_causal_b" value="5">
+                                <label for="pair2_causal_b_5">Extremely convincing</label>
+                            </div>
+                        </div>
+                    </div>
 
-                  <div class="question-block">
-                      <div class="question-title">How confident do you feel about the research claims in Abstract A? <span class="required-indicator">*</span></div>
-                      <div class="likert-scale">
-                          <div class="likert-option">
-                              <input type="radio" id="pair2_confidence_a_1" name="pair2_confidence_a" value="1" required>
-                              <label for="pair2_confidence_a_1">Not confident</label>
-                          </div>
-                          <div class="likert-option">
-                              <input type="radio" id="pair2_confidence_a_2" name="pair2_confidence_a" value="2">
-                              <label for="pair2_confidence_a_2">Slightly confident</label>
-                          </div>
-                          <div class="likert-option">
-                              <input type="radio" id="pair2_confidence_a_3" name="pair2_confidence_a" value="3">
-                              <label for="pair2_confidence_a_3">Moderately confident</label>
-                          </div>
-                          <div class="likert-option">
-                              <input type="radio" id="pair2_confidence_a_4" name="pair2_confidence_a" value="4">
-                              <label for="pair2_confidence_a_4">Very confident</label>
-                          </div>
-                          <div class="likert-option">
-                              <input type="radio" id="pair2_confidence_a_5" name="pair2_confidence_a" value="5">
-                              <label for="pair2_confidence_a_5">Extremely confident</label>
-                          </div>
-                      </div>
-                  </div>
+                    <div class="question-block">
+                        <div class="question-title">How confident do you feel about the research claims in Abstract A? <span class="required-indicator">*</span></div>
+                        <div class="likert-scale">
+                            <div class="likert-option">
+                                <input type="radio" id="pair2_confidence_a_1" name="pair2_confidence_a" value="1" required>
+                                <label for="pair2_confidence_a_1">Not confident</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="pair2_confidence_a_2" name="pair2_confidence_a" value="2">
+                                <label for="pair2_confidence_a_2">Slightly confident</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="pair2_confidence_a_3" name="pair2_confidence_a" value="3">
+                                <label for="pair2_confidence_a_3">Moderately confident</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="pair2_confidence_a_4" name="pair2_confidence_a" value="4">
+                                <label for="pair2_confidence_a_4">Very confident</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="pair2_confidence_a_5" name="pair2_confidence_a" value="5">
+                                <label for="pair2_confidence_a_5">Extremely confident</label>
+                            </div>
+                        </div>
+                    </div>
 
-                  <div class="question-block">
-                      <div class="question-title">How confident do you feel about the research claims in Abstract B? <span class="required-indicator">*</span></div>
-                      <div class="likert-scale">
-                          <div class="likert-option">
-                              <input type="radio" id="pair2_confidence_b_1" name="pair2_confidence_b" value="1" required>
-                              <label for="pair2_confidence_b_1">Not confident</label>
-                          </div>
-                          <div class="likert-option">
-                              <input type="radio" id="pair2_confidence_b_2" name="pair2_confidence_b" value="2">
-                              <label for="pair2_confidence_b_2">Slightly confident</label>
-                          </div>
-                          <div class="likert-option">
-                              <input type="radio" id="pair2_confidence_b_3" name="pair2_confidence_b" value="3">
-                              <label for="pair2_confidence_b_3">Moderately confident</label>
-                          </div>
-                          <div class="likert-option">
-                              <input type="radio" id="pair2_confidence_b_4" name="pair2_confidence_b" value="4">
-                              <label for="pair2_confidence_b_4">Very confident</label>
-                          </div>
-                          <div class="likert-option">
-                              <input type="radio" id="pair2_confidence_b_5" name="pair2_confidence_b" value="5">
-                              <label for="pair2_confidence_b_5">Extremely confident</label>
-                          </div>
-                      </div>
-                  </div>
-              </div>
+                    <div class="question-block">
+                        <div class="question-title">How confident do you feel about the research claims in Abstract B? <span class="required-indicator">*</span></div>
+                        <div class="likert-scale">
+                            <div class="likert-option">
+                                <input type="radio" id="pair2_confidence_b_1" name="pair2_confidence_b" value="1" required>
+                                <label for="pair2_confidence_b_1">Not confident</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="pair2_confidence_b_2" name="pair2_confidence_b" value="2">
+                                <label for="pair2_confidence_b_2">Slightly confident</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="pair2_confidence_b_3" name="pair2_confidence_b" value="3">
+                                <label for="pair2_confidence_b_3">Moderately confident</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="pair2_confidence_b_4" name="pair2_confidence_b" value="4">
+                                <label for="pair2_confidence_b_4">Very confident</label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="pair2_confidence_b_5" name="pair2_confidence_b" value="5">
+                                <label for="pair2_confidence_b_5">Extremely confident</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-              <!-- Final Questions -->
-              <div class="section-title">💭 General Questions</div>
+                <!-- Final Questions -->
+                <div class="section-title">💭 General Questions</div>
 
-              <div class="question-block">
-                  <div class="question-title">Overall, which type of abstract do you find more persuasive? <span class="required-indicator">*</span></div>
-                  <select name="general_persuasive" required>
-                      <option value="">Select...</option>
-                      <option value="More_causal">Abstracts with more explicit causal language (like "underlies", "facilitates", "constrains")</option>
-                      <option value="Less_causal">Abstracts with less explicit causal language (like "relates to", "supports", "affects")</option>
-                      <option value="No_preference">No clear preference</option>
-                  </select>
-              </div>
+                <div class="question-block">
+                    <div class="question-title">Overall, which type of abstract do you find more persuasive? <span class="required-indicator">*</span></div>
+                    <select name="general_persuasive" required>
+                        <option value="">Select...</option>
+                        <option value="More_causal">Abstracts with more explicit causal language (like "underlies", "facilitates", "constrains")</option>
+                        <option value="Less_causal">Abstracts with less explicit causal language (like "relates to", "supports", "affects")</option>
+                        <option value="No_preference">No clear preference</option>
+                    </select>
+                </div>
 
-              <div class="question-block">
-                  <div class="question-title">Do you think explicit causal language makes research claims seem stronger? <span class="required-indicator">*</span></div>
-                  <div class="likert-scale">
-                      <div class="likert-option">
-                          <input type="radio" id="general_stronger_1" name="general_stronger" value="1" required>
-                          <label for="general_stronger_1">Much weaker</label>
-                      </div>
-                      <div class="likert-option">
-                          <input type="radio" id="general_stronger_2" name="general_stronger" value="2">
-                          <label for="general_stronger_2">Slightly weaker</label>
-                      </div>
-                      <div class="likert-option">
-                          <input type="radio" id="general_stronger_3" name="general_stronger" value="3">
-                          <label for="general_stronger_3">No difference</label>
-                      </div>
-                      <div class="likert-option">
-                          <input type="radio" id="general_stronger_4" name="general_stronger" value="4">
-                          <label for="general_stronger_4">Slightly stronger</label>
-                      </div>
-                      <div class="likert-option">
-                          <input type="radio" id="general_stronger_5" name="general_stronger" value="5">
-                          <label for="general_stronger_5">Much stronger</label>
-                      </div>
-                  </div>
-              </div>
+                <div class="question-block">
+                    <div class="question-title">Do you think explicit causal language makes research claims seem stronger? <span class="required-indicator">*</span></div>
+                    <div class="likert-scale">
+                        <div class="likert-option">
+                            <input type="radio" id="general_stronger_1" name="general_stronger" value="1" required>
+                            <label for="general_stronger_1">Much weaker</label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" id="general_stronger_2" name="general_stronger" value="2">
+                            <label for="general_stronger_2">Slightly weaker</label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" id="general_stronger_3" name="general_stronger" value="3">
+                            <label for="general_stronger_3">No difference</label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" id="general_stronger_4" name="general_stronger" value="4">
+                            <label for="general_stronger_4">Slightly stronger</label>
+                        </div>
+                        <div class="likert-option">
+                            <input type="radio" id="general_stronger_5" name="general_stronger" value="5">
+                            <label for="general_stronger_5">Much stronger</label>
+                        </div>
+                    </div>
+                </div>
 
-              <button type="submit" class="submit-btn">Submit Survey</button>
-          </form>
-      </div>
+                <button type="submit" class="submit-btn">Submit Survey</button>
+            </form>
+        </div>
+        
+        <!-- Contenedor del mensaje de finalización -->
+        <div id="completion-container" class="survey-container hidden">
+            <div class="completion-message">
+                <h1>Survey Completed!</h1>
+                <p>Thank you for your participation. Your responses have been recorded.</p>
+                <p>You will now be redirected back to Prolific.</p>
+            </div>
+        </div>
+    </div>
 
-      <script>
-          function handleSubmit(event) {
-              event.preventDefault();
+    <script>
+        // Adjuntar el manejador de eventos al formulario
+        document.getElementById('surveyForm').addEventListener('submit', handleSubmit);
+
+        function handleSubmit(event) {
+            event.preventDefault();
+
+            // --- Prolific Integration ---
+            // IMPORTANTE: Reemplaza esto con tu URL de finalización real de Prolific
+            const PROLIFIC_COMPLETION_URL = "https://app.prolific.com/submissions/complete?cc=CK2KVB9S";
+
+            // 1. Recopilar información de Prolific
             const urlParams = new URLSearchParams(window.location.search);
+            const prolificInfo = {
+                prolific_pid: urlParams.get('PROLIFIC_PID') || 'not-available',
+                study_id: urlParams.get('STUDY_ID') || 'not-available',
+                session_id: urlParams.get('SESSION_ID') || 'not-available'
+            };
 
+            // 2. Recopilar datos del formulario
+            const formData = new FormData(event.target);
+            const surveyResponses = Object.fromEntries(formData.entries());
 
-              // Collect form data
-              var formData = new FormData(event.target);
-              var data = {};
+            // 3. Combinar todos los datos
+            const finalData = {
+                prolificInfo: prolificInfo,
+                surveyResponses: surveyResponses,
+                timestamp: new Date().toISOString()
+            };
 
-              for (var pair of formData.entries()) {
-                  data[pair[0]] = pair[1];
-              }
+            // 4. Registrar los datos (en un estudio real, se enviarían a un servidor)
+            console.log('Survey Response:', finalData);
 
-const urlParams = new URLSearchParams(window.location.search);
-data.prolific_pid = urlParams.get('PROLIFIC_PID');
-data.study_id = urlParams.get('STUDY_ID');
-data.session_id = urlParams.get('SESSION_ID');
+            // 5. Ocultar el formulario y mostrar el mensaje de finalización
+            document.getElementById('survey-container').classList.add('hidden');
+            document.getElementById('completion-container').classList.remove('hidden');
             
-              // Add metadata
-              data.timestamp = new Date().toISOString();
-              data.session_id = 'session_' + Math.random().toString(36).substr(2, 9);
-
-              // Log the data (in production, send to server)
-              console.log('Survey Response:', data);
-
-              // Show success message
-              alert('Survey completed! Thank you for your participation. Your responses have been recorded.');
-
-            // La línea "alert('Survey completed!...')" puede ser eliminada o comentada.
-// Redirige al participante a la URL de finalización de Prolific.
-window.location.href = "https://app.prolific.com/submissions/complete?cc=CK2KVB9S";
-
-              return false;
-          }
-      </script>
-  </body>
-  </html>
+            // 6. Redirigir a Prolific después de un breve retraso
+            setTimeout(() => {
+                window.location.href = PROLIFIC_COMPLETION_URL;
+            }, 3000); // 3 segundos de retraso
+        }
+    </script>
+</body>
+</html>
 
 
 
