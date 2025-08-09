@@ -689,12 +689,24 @@
                 timestamp: new Date().toISOString()
             };
 
-            // 4. Registrar los datos (en un estudio real, se enviarían a un servidor)
+          // 4. Registrar los datos
             console.log('Survey Response:', finalData);
+
+            // --- INICIO DEL CÓDIGO A AÑADIR ---
+            const googleAppScriptURL = 'https://script.google.com/macros/s/AKfycbxZ2XBwXAwpGvCEe7VWzctioklh8eeDYvjLo0ULNlvd_1t953KPK1Q78Pnd3N4ETlQk/exec'; // <-- PEGA TU URL DE GOOGLE AQUÍ
+
+            fetch(googleAppScriptURL, {
+              method: 'POST',
+              mode: 'no-cors', // Importante para evitar errores de CORS
+              cache: 'no-cache',
+              headers: { 'Content-Type': 'application/json' },
+              // Añadimos un campo "studyType" para identificar los datos en la hoja de cálculo
+              body: JSON.stringify({ ...finalData, studyType: "language_evolution_survey" })
+            });
+            // --- FIN DEL CÓDIGO A AÑADIR ---
 
             // 5. Ocultar el formulario y mostrar el mensaje de finalización
             document.getElementById('survey-container').classList.add('hidden');
-            document.getElementById('completion-container').classList.remove('hidden');
             
             // 6. Redirigir a Prolific después de un breve retraso
             setTimeout(() => {
