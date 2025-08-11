@@ -1,4 +1,4 @@
-# Causal Language Evolution in Philosophical Abstracts (1950-2025)
+# Causal Language Evolution in Philosophical Abstracts 
 
   ## Project Overview
   Computational study analyzing the evolution of causal language in
